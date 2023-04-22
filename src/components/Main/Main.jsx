@@ -8,19 +8,12 @@ import Techs from '../Techs/Techs';
 // ! компонент страницы «О проекте»
 function Main() {
   return (
-    <div className="Main">
-
-    <Promo/>
-
-    <AboutProject/>
-
-    <Techs/>
-
-    <AboutMe/>
-
-    <Portfolio/>
-
-    </div>
+    <main className="Main">
+      <Promo/>
+      <AboutProject/>
+      <Techs/>
+      <AboutMe/>
+    </main>
     );
 }
 

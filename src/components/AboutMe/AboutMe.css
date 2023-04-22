@@ -1,0 +1,58 @@
+.AboutMe {
+  max-width: 1140px;
+  width: 100%;
+  margin: 89px auto 100px;
+}
+
+.Protfolio__container {
+  display: flex;
+  justify-content: space-between;
+  list-style-type: none;
+  margin: 66px 0 0 0;
+  padding: 0;
+}
+
+.AboutMe__lc {
+  max-width: 600px;
+  width: 100%;
+}
+
+.AboutMe__lc-title {
+  font-weight: 400;
+  font-size: 50px;
+  line-height: 116%;
+  letter-spacing: -0.04em;
+  margin: 0;
+  padding: 0;
+}
+
+.AboutMe__lc-subtitle {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 111%;
+  margin: 19px 0 0 0;
+  padding: 0;
+}
+
+.AboutMe__lc-text {
+  margin: 25px 0 0 0;
+  padding: 0;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 157%;
+}
+
+.AboutMe__lc-link {
+  display: block;
+  margin: 101px 0 0 0;
+  padding: 0;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: calc((17/14)*100%);
+  text-decoration: none;
+  color: #000;
+}
+
+.AboutMe__photo {
+  border-radius: 10px;
+}

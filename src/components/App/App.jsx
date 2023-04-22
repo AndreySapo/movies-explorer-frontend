@@ -1,4 +1,5 @@
 import './App.css';
+import { Route, Routes } from 'react-router';
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 import Login from '../Login/Login';
@@ -13,23 +14,13 @@ function App() {
   return (
     <div className="App">
 
-      <Header/>
+      <Header />
 
-      <Main/>
+      <Routes>
+        <Route path="/" element={<Main />} />
+      </Routes>
 
-      <Movies/>
-
-      <SavedMovies/>
-
-      <Login/>
-
-      <Profile/>
-
-      <Register/>
-
-      <NotFound/>
-
-      <Footer/>
+      <Footer />
 
     </div>
   );

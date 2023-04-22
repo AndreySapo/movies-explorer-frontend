@@ -1,0 +1,111 @@
+.AboutProject {
+  max-width: 1140px;
+  width: 100%;
+  margin: 111px auto 109px;
+}
+
+.AboutProject__title {
+  margin: 0;
+  padding: 0;
+}
+
+.AboutProject__list-text {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 53px;
+  margin: 70px 0 0 0;
+}
+
+.AboutProject__list-text-el-header {
+  margin: 0;
+  padding: 0;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: calc((24/20)*100%);
+  letter-spacing: -0.04em;
+}
+
+.AboutProject__list-text-el-text {
+  margin: 0;
+  padding: 0;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 143%;
+  margin: 26px 0 0 0;
+}
+
+.AboutProject__list-graph {
+  list-style-type: none;
+  display: grid;
+  grid-template-columns: 228px 1fr;
+  margin: 110px 0 0;
+  padding: 0;
+  gap: 15px 0;
+}
+
+@media screen and (max-width: 1201px) {
+  .AboutProject__list-graph {
+    grid-template-columns: 140px 1fr;
+    gap: 14px 0;
+    margin: 93px 50px 90px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .AboutProject__list-graph {
+    grid-template-columns: 100px 1fr;
+    gap: 11px 0;
+    margin: 58px 18px 90px;
+  }
+}
+
+.AboutProject__list-graph-header {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: calc((17/14)*100%);
+  text-align: center;
+  color: #000000;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 36px;
+}
+
+@media screen and (max-width: 767px) {
+  .AboutProject__list-graph-header {
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 13px;
+  }
+}
+
+.AboutProject__list-graph-header_color-fill {
+  background: #2BE080;
+}
+
+.AboutProject__list-graph-header_color-empty {
+  background: #F2F2F2;
+}
+
+.AboutProject__list-graph-text {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 121%;
+  text-align: center;
+  color: #A0A0A0;
+  margin: 0;
+  padding: 0;
+  min-height: 17px;
+}
+
+@media screen and (max-width: 767px) {
+  .AboutProject__list-graph-text {
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 100%;
+  }
+}

@@ -1,4 +1,13 @@
-/* * {
+@import url(../../vendor/normalize.css);
+@import url(../../vendor/fonts/fonts.css);
+
+.App {
+  max-width: 1280px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
   font-family: 'Inter';
   font-style: normal;
-} */
+  box-sizing: border-box;
+}

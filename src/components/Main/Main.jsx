@@ -13,6 +13,7 @@ function Main() {
       <AboutProject/>
       <Techs/>
       <AboutMe/>
+      <Portfolio/>
     </main>
     );
 }

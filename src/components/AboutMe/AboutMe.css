@@ -4,7 +4,21 @@
   margin: 89px auto 100px;
 }
 
-.Protfolio__container {
+@media screen and (max-width: 1140px) {
+  .AboutMe {
+    max-width: 668px;
+    margin: 70px auto 86px;
+  }
+}
+
+@media screen and (max-width: 668px) {
+  .AboutMe {
+    max-width: 292px;
+    margin: 122px auto 69px;
+  }
+}
+
+.AboutMe__container {
   display: flex;
   justify-content: space-between;
   list-style-type: none;
@@ -12,9 +26,29 @@
   padding: 0;
 }
 
+@media screen and (max-width: 1140px) {
+  .AboutMe__container {
+    margin-top: 67px;
+  }
+}
+
+@media screen and (max-width: 668px) {
+  .AboutMe__container {
+    flex-direction: column-reverse;
+    margin-top: 60px;
+    gap: 36px;
+  }
+}
+
 .AboutMe__lc {
   max-width: 600px;
   width: 100%;
+}
+
+@media screen and (max-width: 1140px) {
+  .AboutMe__lc {
+    max-width: 364px;
+  }
 }
 
 .AboutMe__lc-title {
@@ -26,6 +60,20 @@
   padding: 0;
 }
 
+@media screen and (max-width: 1140px) {
+  .AboutMe__lc-title {
+    font-size: 40px;
+    line-height: 100%;
+  }
+}
+
+@media screen and (max-width: 668px) {
+  .AboutMe__lc-title {
+    font-size: 30px;
+    line-height: calc((36/30)*100%);
+  }
+}
+
 .AboutMe__lc-subtitle {
   font-weight: 500;
   font-size: 18px;
@@ -34,12 +82,43 @@
   padding: 0;
 }
 
+@media screen and (max-width: 1140px) {
+  .AboutMe__lc-subtitle {
+    font-size: 12px;
+    line-height: 150%;
+    margin-top: 15px;
+  }
+}
+
+@media screen and (max-width: 668px) {
+  .AboutMe__lc-subtitle {
+    font-size: 11px;
+    line-height: 145%;
+    margin-top: 21px;
+  }
+}
+
 .AboutMe__lc-text {
   margin: 25px 0 0 0;
   padding: 0;
   font-weight: 400;
   font-size: 14px;
   line-height: 157%;
+}
+
+@media screen and (max-width: 1140px) {
+  .AboutMe__lc-text {
+    font-size: 12px;
+    line-height: 150%;
+    margin-top: 20px;
+  }
+}
+
+@media screen and (max-width: 668px) {
+  .AboutMe__lc-text {
+    font-size: 11px;
+    line-height: 145%;
+  }
 }
 
 .AboutMe__lc-link {
@@ -53,6 +132,36 @@
   color: #000;
 }
 
+@media screen and (max-width: 1140px) {
+  .AboutMe__lc-link {
+    margin-top: 88px;
+  }
+}
+
+@media screen and (max-width: 668px) {
+  .AboutMe__lc-link {
+    margin-top: 41px;
+  }
+}
+
 .AboutMe__photo {
   border-radius: 10px;
+  max-height: 327px;
+  height: 100%;
+  max-width: 270px;
+  width: 100%;
+}
+
+@media screen and (max-width: 1140px) {
+  .AboutMe__photo {
+    max-height: 307px;
+    max-width: 255px;
+  }
+}
+
+@media screen and (max-width: 668px) {
+  .AboutMe__photo {
+    max-height: 352px;
+    max-width: 292px;
+  }
 }

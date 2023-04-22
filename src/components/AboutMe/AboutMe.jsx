@@ -6,7 +6,7 @@ function AboutMe() {
   return (
     <section className="AboutMe" id='AboutMe'>
       <h3 className="AboutMe__title-header block-header">Студент</h3>
-      <ul className="Protfolio__container">
+      <ul className="AboutMe__container">
         <li className="AboutMe__lc">
           <h2 className="AboutMe__lc-title">Виталий</h2>
           <h4 className="AboutMe__lc-subtitle">Фронтенд-разработчик, 30 лет</h4>

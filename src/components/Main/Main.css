@@ -11,3 +11,11 @@
   border-bottom: 1px solid #000000;
   padding-bottom: 22px;
 }
+
+@media screen and (max-width: 668px) {
+  .block-header {
+    font-size: 18px;
+    line-height: calc((22/18)*100%);
+    padding-bottom: 27px;
+  }
+}

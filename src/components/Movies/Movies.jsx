@@ -1,23 +1,20 @@
-import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 import './Movies.css';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
-import Preloader from '../Preloader/Preloader';
 import SearchForm from '../SearchForm/SearchForm';
-import MoviesCard from '../SavedMovies/MoviesCard';
 import Layout from '../Layout/Layout';
-import { useState } from 'react';
+import Preloader from '../Preloader/Preloader';
 
 // ! компонент страницы с поиском по фильмам
 function Movies({ isLoggedIn, onOpen }) {
   // TODO перед деплоем переставить isLoggedIn!!!
 
-  
+  const loading = false;
 
   return (
     <Layout isLoggedIn={true} onOpen={onOpen}>
       <main className="Movies">
         <SearchForm />
-        <MoviesCardList />
+        {loading ? <Preloader /> : <MoviesCardList />}
       </main>
     </Layout>
   );

@@ -1,5 +1,5 @@
-import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 import './SearchForm.css'
+import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 import lens from '../../images/lens.svg';
 import findBtn from '../../images/find.svg';
 

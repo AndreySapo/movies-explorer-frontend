@@ -4,7 +4,7 @@
   margin-left: 4px;
 }
 
-@media screen and (max-width: 708px) {
+@media screen and (max-width: 768px) {
   .FilterCheckbox {
     margin: 0;
   }
@@ -72,8 +72,9 @@
   color: #000000;
 }
 
-@media screen and (max-width: 708px) {
+@media screen and (max-width: 768px) {
   .FilterCheckbox__checkbox-text {
+    margin: 1px 0 0;
     font-size: 11px;
     line-height: 164%;
   }

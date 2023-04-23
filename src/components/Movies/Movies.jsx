@@ -5,15 +5,19 @@ import Preloader from '../Preloader/Preloader';
 import SearchForm from '../SearchForm/SearchForm';
 import MoviesCard from '../SavedMovies/MoviesCard';
 import Layout from '../Layout/Layout';
+import { useState } from 'react';
 
 // ! компонент страницы с поиском по фильмам
-function Movies({isLoggedIn, onOpen}) {
+function Movies({ isLoggedIn, onOpen }) {
   // TODO перед деплоем переставить isLoggedIn!!!
+
+  
+
   return (
     <Layout isLoggedIn={true} onOpen={onOpen}>
       <main className="Movies">
-        <SearchForm/>
-        <MoviesCardList/>
+        <SearchForm />
+        <MoviesCardList />
       </main>
     </Layout>
   );

@@ -4,24 +4,19 @@ import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import Preloader from '../Preloader/Preloader';
 import SearchForm from '../SearchForm/SearchForm';
 import MoviesCard from '../SavedMovies/MoviesCard';
+import Layout from '../Layout/Layout';
 
 // ! компонент страницы с поиском по фильмам
-function Movies() {
+function Movies({isLoggedIn, onOpen}) {
+  // TODO перед деплоем переставить isLoggedIn!!!
   return (
-    <div className="Movies">
-
-      <SearchForm>
-        <FilterCheckbox/>
-      </SearchForm>
-
-      <Preloader/>
-
-      <MoviesCardList>
-        {/* <MoviesCard/> */}
-      </MoviesCardList>
-
-    </div>
-    );
+    <Layout isLoggedIn={true} onOpen={onOpen}>
+      <main className="Movies">
+        <SearchForm/>
+        <MoviesCardList/>
+      </main>
+    </Layout>
+  );
 }
 
 export default Movies

@@ -1,0 +1,34 @@
+.MenuPopup {
+  display: none;
+  position: relative;
+}
+
+.MenuPopup_active {
+  display: flex;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0, 0.3);
+  top: 0;
+  right: 0;
+  z-index: 2;
+}
+
+.MenuPopup__container {
+  background: #FFFFFF;
+  top: 0;
+  right: 0;
+  position: fixed;
+  width: 520px;
+  height: 100%;
+}
+
+.MenuPopup__button {
+  border: none;
+  background: none;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 22px;
+  right: 22px;
+}

@@ -3,12 +3,14 @@
   width: 100%;
   margin: 18px auto;
   display: flex;
+  align-items: center;
   justify-content: space-between;
 }
 
-@media screen and (max-width: 1140px) {
+@media screen and (max-width: 1200px) {
   .Header {
     max-width: 708px;
+    margin: 15px auto;
   }
 }
 

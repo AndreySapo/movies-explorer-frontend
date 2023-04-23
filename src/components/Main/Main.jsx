@@ -4,18 +4,22 @@ import './Main.css';
 import Portfolio from '../Portfolio/Portfolio';
 import Promo from '../Promo/Promo';
 import Techs from '../Techs/Techs';
+import Layout from '../Layout/Layout';
 
 // ! компонент страницы «О проекте»
-function Main() {
+function Main({isLoggedIn}) {
+  // TODO перед деплоем переставить isLoggedIn!!!
   return (
-    <main className="Main">
-      <Promo/>
-      <AboutProject/>
-      <Techs/>
-      <AboutMe/>
-      <Portfolio/>
-    </main>
-    );
+    <Layout isLoggedIn={false}> 
+      <main className="Main">
+        <Promo />
+        <AboutProject />
+        <Techs />
+        <AboutMe />
+        <Portfolio />
+      </main>
+    </Layout>
+  );
 }
 
 export default Main

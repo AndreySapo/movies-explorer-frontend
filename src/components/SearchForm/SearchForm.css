@@ -1,0 +1,132 @@
+.SearchForm {
+  border-bottom: 1px solid #E8E8E8;
+  padding-bottom: 69px;
+  z-index: 1;
+}
+
+@media screen and (max-width: 708px) {
+  .SearchForm {
+    padding-bottom: 109px;
+  }
+}
+
+.SearchForm__main-container {
+  display: flex;
+  gap: 23px;
+  align-items: center;
+  background: #F9F9F9;
+  border-radius: 9px;
+  height: 72px;
+  margin-top: 70px;
+}
+
+@media screen and (max-width: 1280px) {
+  .SearchForm__main-container {
+    margin-top: 80px;
+    gap: 14px;
+  }
+}
+
+@media screen and (max-width: 708px) {
+  .SearchForm__main-container {
+    flex-direction: column;
+    gap: 60px;
+
+  }
+}
+
+.SearchForm__search-container {
+  display: flex;
+  position: relative;
+  max-width: 890px;
+  width: 100%;
+}
+
+@media screen and (max-width: 1280px) {
+  .SearchForm__search-container {
+    max-width: 487px;
+  }
+}
+
+.SearchForm__input {
+  border: none;
+  margin: 0;
+  padding: 0;
+  background-color: #F9F9F9;
+  width: 100%;
+}
+
+.SearchForm__input-background {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  top: 10px;
+  left: 30px;
+  gap: 20px;
+}
+
+@media screen and (max-width: 708px) {
+  .SearchForm__input-background {
+    top: 26px;
+    left: 19px;
+  }
+}
+
+.SearchForm__input-background-img {
+  margin: 0;
+  padding: 0;
+  display: block;
+}
+
+@media screen and (max-width: 708px) {
+  .SearchForm__input-background-img {
+    display: none;
+  }
+}
+
+.SearchForm__input-background-text {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 111%;
+  color: #A0A0A0;
+  margin: 0;
+  padding: 0;
+}
+
+@media screen and (max-width: 708px) {
+  .SearchForm__input-background-text {
+    font-size: 14px;
+    line-height: 143%;
+  }
+}
+
+.SearchForm__submit {
+  border: none;
+  background: #F9F9F9;
+  margin: 3px 7px 0 0;
+  padding: 0;
+}
+
+@media screen and (max-width: 1140px) {
+  .SearchForm__submit {
+    margin: 3px 6px 0 0;
+  }
+}
+
+@media screen and (max-width: 708px) {
+  .SearchForm__submit {
+    margin: 19px 19px 0 0;
+  }
+}
+
+.splitter {
+  height: 40px;
+  width: 1px;
+  background: #E8E8E8;
+}
+
+@media screen and (max-width: 708px) {
+  .splitter {
+    display: none;
+  }
+}

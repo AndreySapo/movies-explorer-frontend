@@ -1,10 +1,18 @@
-import './Navigation.css'
+import './Navigation.css';
+import menuBtnImg from '../../images/open-button.svg';
+import NavigationLinks from '../NavigationLinks/NavigationLinks';
 
-// ! компонент, который отвечает за меню навигации на сайте
-function Navigation() {
+
+function Navigation({ onOpen }) {
+
   return (
-    <div className="Navigation"></div>
-    );
+    <>
+      <NavigationLinks/>
+      <button className='header__menu-btn' onClick={onOpen}>
+        <img src={menuBtnImg} alt="Кнопка меню" className='header__img' />
+      </button>
+    </>
+  );
 }
 
 export default Navigation

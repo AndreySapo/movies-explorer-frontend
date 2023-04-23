@@ -7,11 +7,11 @@ import MoviesCardList from '../MoviesCardList/MoviesCardList';
 function SavedMovies({ isLoggedIn, onOpen }) {
 
   const saved = true;
-
-
+  const header = true;
+  const footer = true;
 
   return (
-    <Layout isLoggedIn={true} onOpen={onOpen}>
+    <Layout isLoggedIn={true} onOpen={onOpen} header={header} footer={footer}>
       <main className='SavedMovies'>
         <SearchForm />
         <MoviesCardList saved={saved} />

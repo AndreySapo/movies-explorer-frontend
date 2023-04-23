@@ -5,6 +5,7 @@ import NotFound from '../NotFound/NotFound';
 import MenuPopup from '../MenuPopup/MenuPopup';
 import Movies from '../Movies/Movies';
 import SavedMovies from '../SavedMovies/SavedMovies';
+import Profile from '../Profile/Profile';
 import { useState } from 'react';
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
         <Route path="/" element={<Main isLoggedIn={isLoggedIn} />} />
         <Route path="/movies/*" element={<Movies isLoggedIn={isLoggedIn} onOpen={handleMenuPopupOpen}/>} />
         <Route path="/saved-movies/*" element={<SavedMovies isLoggedIn={isLoggedIn} onOpen={handleMenuPopupOpen}/>} />
+        <Route path="/profile/*" element={<Profile isLoggedIn={isLoggedIn} onOpen={handleMenuPopupOpen}/>} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </div>

@@ -1,0 +1,121 @@
+.Profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Profile__title {
+  font-weight: 500;
+  font-size: 24px;
+  line-height: calc((29/24)*100%);
+  margin: 75px 3px 0 0;
+  padding: 0;
+}
+
+@media screen and (max-width: 1280px) {
+  .Profile__title {
+    margin-top: 249px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .Profile__title {
+    margin: 84px 0 0 0;
+  }
+}
+
+.Profile__list {
+  margin: 123px 0 0 0;
+  padding: 0;
+  list-style-type: none;
+  max-width: 410px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+@media screen and (max-width: 1280px) {
+  .Profile__list {
+    margin-top: 96px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .Profile__list {
+    margin-top: 80px;
+    max-width: 260px;
+  }
+}
+
+.Profile__list-el {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  border-bottom: 1px solid #E8E8E8;
+  padding-bottom: 16px;
+}
+
+.Profile__list-el:last-child {
+  border: none;
+}
+
+.Profile__list-el-title {
+  margin: 0;
+  padding: 0;
+  font-weight: 500;
+  font-size: 11px;
+  line-height: calc((13/11)*100%);
+}
+
+.Profile__list-el-text {
+  margin: 0;
+  padding: 0;
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 13px;
+  line-height: calc((13/11)*100%);
+}
+
+.Profile__edit-button {
+  margin: 205px 0 15px;
+  padding: 0;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: calc((16/13)*100%);
+  border: none;
+  background: none;
+}
+
+@media screen and (max-width: 1280px) {
+  .Profile__edit-button {
+    margin-top: 195px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .Profile__edit-button {
+    margin-top: 364px;
+    font-size: 12px;
+    line-height: calc((15/12)*100%);
+  }
+}
+
+
+.Profile__exit-button {
+  margin: 0;
+  padding: 0;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: calc((16/13)*100%);
+  color: #FF3055;
+  border: none;
+  background: none;
+}
+
+@media screen and (max-width: 768px) {
+  .Profile__exit-button {
+    font-size: 12px;
+    line-height: calc((15/12)*100%);
+  }
+}

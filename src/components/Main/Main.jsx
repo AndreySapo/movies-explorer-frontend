@@ -9,8 +9,12 @@ import Layout from '../Layout/Layout';
 // ! компонент страницы «О проекте»
 function Main({isLoggedIn}) {
   // TODO перед деплоем переставить isLoggedIn!!!
+
+  const header = true;
+  const footer = true;
+
   return (
-    <Layout isLoggedIn={false}> 
+    <Layout isLoggedIn={false} header={header} footer={footer}> 
       <main className="Main">
         <Promo />
         <AboutProject />

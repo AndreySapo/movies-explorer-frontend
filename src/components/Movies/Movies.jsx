@@ -9,9 +9,11 @@ function Movies({ isLoggedIn, onOpen }) {
   // TODO перед деплоем переставить isLoggedIn!!!
 
   const loading = false;
+  const header = true;
+  const footer = true;
 
   return (
-    <Layout isLoggedIn={true} onOpen={onOpen}>
+    <Layout isLoggedIn={true} onOpen={onOpen} header={header} footer={footer}>
       <main className="Movies">
         <SearchForm />
         {loading ? <Preloader /> : <MoviesCardList />}

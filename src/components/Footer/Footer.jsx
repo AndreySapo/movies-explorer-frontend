@@ -1,8 +1,9 @@
 import './Footer.css'
 
 // ! презентационный компонент, который отрисовывает подвал
-function Footer() {
+function Footer({ footer }) {
   return (
+    footer &&
     <footer className="Footer">
       <h2 className="Footer__title">Учебный проект Яндекс.Практикум х BeatFilm.</h2>
       <div className="Footer__container">

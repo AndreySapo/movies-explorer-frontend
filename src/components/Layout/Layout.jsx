@@ -1,12 +1,12 @@
 import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
 
-function Layout({ isLoggedIn, children, onOpen }) {
+function Layout({ isLoggedIn, children, onOpen, header, footer }) {
   return (
     <>
-      <Header isLoggedIn={isLoggedIn} onOpen={onOpen}/>
+      <Header isLoggedIn={isLoggedIn} onOpen={onOpen} header={header}/>
           {children}
-      <Footer />
+      <Footer footer={footer}/>
     </>
   );
 }

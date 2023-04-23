@@ -5,8 +5,9 @@ import Navigation from '../Navigation/Navigation';
 import NavigationMain from '../NavigationMain/NavigationMain';
 
 // ! компонент, который отрисовывает шапку сайта на страницу
-function Header({ isLoggedIn, onOpen }) {
+function Header({ isLoggedIn, onOpen, header }) {
   return (
+    header &&
     <header className="Header">
       <Link to='/' className='Header__logo-link'>
         <img src={logo} className='Header__logo' alt='Логотип' />

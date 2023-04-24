@@ -19,8 +19,8 @@ function Profile({ isLoggedIn, onOpen }) {
             <p className="Profile__list-el-text">pochta@yandex.ru</p>
           </li>
         </ul>
-        <button className='Profile__edit-button'>Редактировать</button>
-        <button className='Profile__exit-button'>Выйти из аккаунта</button>
+        <button className='Profile__edit-button button-hover'>Редактировать</button>
+        <button className='Profile__exit-button button-hover'>Выйти из аккаунта</button>
       </main>
     </Layout>
   );

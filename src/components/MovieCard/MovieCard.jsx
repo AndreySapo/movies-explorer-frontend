@@ -25,17 +25,17 @@ function MovieCard({ movie, saved }) {
       <img src={moviePic} alt={nameRU} className="MovieCard__img" />
       {
         saved ?
-          <button className='MovieCard__button' onClick={handleSetIsLiked}>
+          <button className='MovieCard__button button-hover' onClick={handleSetIsLiked}>
             <img src={x} alt="" srcset="" />
           </button> :
 
           isLiked
             ?
-            <button className='MovieCard__button MovieCard__button_active' onClick={handleSetIsLiked}>
+            <button className='MovieCard__button MovieCard__button_active button-hover' onClick={handleSetIsLiked}>
               <img src={buttonSaved} alt="" srcset="" />
             </button>
             :
-            <button className='MovieCard__button' onClick={handleSetIsLiked}>
+            <button className='MovieCard__button button-hover' onClick={handleSetIsLiked}>
               Сохранить
             </button>
       }

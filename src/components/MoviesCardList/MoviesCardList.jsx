@@ -4,7 +4,7 @@ import MovieCard from '../MovieCard/MovieCard';
 
 // !  компонент, который управляет отрисовкой карточек фильмов на страницу и их количеством
 function MoviesCardList({ saved }) {
-  const slicedMovies = movies.slice(0, 4);
+  const slicedMovies = movies.slice(0, 12);
 
   return (
     <section className="MoviesCardList">
@@ -15,7 +15,7 @@ function MoviesCardList({ saved }) {
           })
         }
       </ul>
-      <button className='MoviesCardList__button'>Ещё</button>
+      <button className='MoviesCardList__button button-hover'>Ещё</button>
     </section>
   );
 }

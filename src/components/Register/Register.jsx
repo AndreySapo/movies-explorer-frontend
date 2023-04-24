@@ -45,9 +45,9 @@ function Register() {
             <span className='Register__form-element-error' />
           </li>
         </ul>
-        <button type="submit" className='Register__button'>Зарегистрироваться</button>
+        <button type="submit" className='Register__button button-hover'>Зарегистрироваться</button>
       </form>
-      <Link to='/signin' className='Register__redirect-link'>Уже зарегистрированы?&nbsp;<span>Войти</span></Link>
+      <Link to='/signin' className='Register__redirect-link link-hover'>Уже зарегистрированы?&nbsp;<span>Войти</span></Link>
     </main>
   );
 }

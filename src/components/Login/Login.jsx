@@ -34,9 +34,9 @@ function Login() {
             <span className='Login__form-element-error' />
           </li>
         </ul>
-        <button type="submit" className='Login__button'>Войти</button>
+        <button type="submit" className='Login__button button-hover'>Войти</button>
       </form>
-      <Link to='/signin' className='Login__redirect-link'>Ещё не зарегистрированы?&nbsp;<span>Регистрация</span></Link>
+      <Link to='/signin' className='Login__redirect-link link-hover'>Ещё не зарегистрированы?&nbsp;<span>Регистрация</span></Link>
     </main>
   );
 }

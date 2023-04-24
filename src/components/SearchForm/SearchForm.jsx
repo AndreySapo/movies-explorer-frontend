@@ -22,7 +22,7 @@ function SearchForm() {
           <button
             type="submit"
             aria-label='Кнопка поиска'
-            className='SearchForm__submit'
+            className='SearchForm__submit button-hover'
           >
             <img
               src={findBtn}

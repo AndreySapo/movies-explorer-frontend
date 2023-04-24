@@ -8,7 +8,7 @@ function Navigation({ onOpen }) {
   return (
     <>
       <NavigationLinks/>
-      <button className='header__menu-btn' onClick={onOpen}>
+      <button className='header__menu-btn button-hover' onClick={onOpen}>
         <img src={menuBtnImg} alt="Кнопка меню" className='header__img' />
       </button>
     </>

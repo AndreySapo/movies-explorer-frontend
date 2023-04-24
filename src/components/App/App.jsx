@@ -1,5 +1,6 @@
 import './App.css';
 import { Route, Routes } from 'react-router';
+import Login from '../Login/Login';
 import Main from '../Main/Main';
 import NotFound from '../NotFound/NotFound';
 import MenuPopup from '../MenuPopup/MenuPopup';
@@ -29,6 +30,7 @@ function App() {
         <Route path="/saved-movies/*" element={<SavedMovies isLoggedIn={isLoggedIn} onOpen={handleMenuPopupOpen}/>} />
         <Route path="/profile/*" element={<Profile isLoggedIn={isLoggedIn} onOpen={handleMenuPopupOpen}/>} />
         <Route path='/signup/*' element={<Register/>}/>
+        <Route path='/signin/*' element={<Login/>}/>
         <Route path="*" element={<NotFound />} />
       </Routes>
     </div>

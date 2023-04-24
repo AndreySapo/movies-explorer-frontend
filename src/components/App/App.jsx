@@ -1,5 +1,5 @@
 import './App.css';
-import { Route, Routes } from 'react-router';
+import { Route, Routes } from 'react-router-dom';
 import Login from '../Login/Login';
 import Main from '../Main/Main';
 import NotFound from '../NotFound/NotFound';

@@ -1,31 +1,32 @@
 .Promo {
-  max-width: 1200px;
-  width: 100%;
   background: #F5F5F5;
   border-radius: 10px;
   height: 493px;
-  margin: 20px auto 0;
+  margin: 20px 40px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 1024px) {
   .Promo {
-    max-width: 728px;
     height: 834px;
+    margin: 20px 20px 0;
   }
 }
 
-@media screen and (max-width: 728px) {
+/* @media screen and (max-width: 720px) */
+@media screen and (max-width: 720px) {
   .Promo {
-    max-width: 292px;
     height: 586px;
-    margin-top: 14px;
+    margin: 14px 14px 0;
   }
 }
 
 .Promo__title {
   max-width: 730px;
-  margin: 0 auto;
-  padding: 160px 0 0 0;
+  margin: 160px auto 0;
+  padding: 0;
   font-weight: 400;
   font-size: 50px;
   line-height: 116%;
@@ -34,42 +35,43 @@
   color: #000000;
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 1024px) {
   .Promo__title {
     max-width: 680px;
     font-size: 40px;
     line-height: 130%;
-    padding-top: 351px;
+    margin: 351px auto 0;
   }
 }
 
-@media screen and (max-width: 728px) {
+@media screen and (max-width: 720px) {
   .Promo__title {
+    max-width: none;
+    margin: 220px auto 0;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .Promo__title {
+    font-weight: 400;
     font-size: 29px;
     line-height: 128%;
-    padding-top: 220px;
   }
 }
 
 .Promo__list {
   list-style-type: none;
-  margin: 151px 0 0 0;
+  margin: 0 0 30px 0;
   padding: 0;
   display: flex;
   justify-content: center;
   gap: 10px;
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 720px) {
   .Promo__list {
-    margin-top: 313px;
-  }
-}
-
-@media screen and (max-width: 728px) {
-  .Promo__list {
-    margin-top: 212px;
     gap: 6px;
+    margin: 0 0 17px 0;
   }
 }
 
@@ -90,11 +92,11 @@
   width: 96px;
 }
 
-@media screen and (max-width: 728px) {
+@media screen and (max-width: 720px) {
   .Promo__link {
-    height: 26px;
     width: 82px;
-    border-radius: 6px;
+    height: 26px;
+    font-weight: 500;
     font-size: 10px;
     line-height: 160%;
   }

@@ -1,40 +1,24 @@
 .Techs {
   background: #F5F5F5;
   margin: 0;
-  padding: 101px 0 100px;
-  width: 100%;
+  padding: 101px 70px 100px;
 }
 
-@media screen and (max-width: 1140px) {
+@media screen and (max-width: 1024px) {
   .Techs {
-    padding: 91px 0;
+    padding: 90px 50px 52px;
   }
 }
 
-@media screen and (max-width: 668px) {
+@media screen and (max-width: 425px) {
   .Techs {
-    padding: 0;
+    padding: 65px 18px 0;
     background: none;
   }
 }
 
 .Techs__title-header {
-  width: 100%;
-  max-width: 1140px;
   margin: 0 auto;
-}
-
-@media screen and (max-width: 1140px) {
-  .Techs__title-header {
-    max-width: 668px;
-  }
-}
-
-@media screen and (max-width: 668px) {
-  .Techs__title-header {
-    max-width: 284px;
-    margin-top: 45px;
-  }
 }
 
 .Techs__title {
@@ -47,9 +31,9 @@
   padding: 0;
 }
 
-@media screen and (max-width: 1140px) {
+@media screen and (max-width: 1024px) {
   .Techs__title {
-    margin-top: 81px;
+    margin: 81px 0 0 0;
   }
 }
 
@@ -72,7 +56,7 @@
   padding: 0;
 }
 
-@media screen and (max-width: 1140px) {
+@media screen and (max-width: 1024px) {
   .Techs__text {
     font-size: 12px;
     line-height: 150%;
@@ -98,7 +82,7 @@
   padding: 0;
 }
 
-@media screen and (max-width: 1201px) {
+@media screen and (max-width: 1024px) {
   .Techs__list {
     margin: 85px 0 0 0;
   }
@@ -110,6 +94,7 @@
     margin: 50px auto 0;
     flex-wrap: wrap;
     justify-content: flex-start;
+    gap: 13px 10px;
   }
 }
 
@@ -123,19 +108,19 @@
   align-items: center;
 }
 
-@media screen and (max-width: 1201px) {
+@media screen and (max-width: 1024px) {
   .Techs__list-item {
     min-width: 84px;
     min-height: 54px;
   }
 }
 
-@media screen and (max-width: 668px) {
+/* @media screen and (max-width: 668px) {
   .Techs__list-item {
     min-height: 57px;
     max-width: 84px;
   }
-}
+} */
 
 .Tech__list-text {
   margin: 0;
@@ -147,7 +132,7 @@
   color: #000000;
 }
 
-@media screen and (max-width: 1201px) {
+@media screen and (max-width: 1024px) {
   .Tech__list-text {
     font-size: 12px;
     line-height: 100%;

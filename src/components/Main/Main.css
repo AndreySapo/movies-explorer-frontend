@@ -9,11 +9,13 @@
   line-height: calc((27/22)*100%);
   letter-spacing: -0.04em;
   border-bottom: 1px solid #000000;
+  margin: 0;
   padding-bottom: 22px;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 425px) {
   .block-header {
+    font-weight: 400;
     font-size: 18px;
     line-height: calc((22/18)*100%);
     padding-bottom: 27px;

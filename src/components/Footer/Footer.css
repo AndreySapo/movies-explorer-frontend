@@ -1,19 +1,16 @@
 .Footer {
-  margin: 79px auto 20px;
-  max-width: 1140px;
-  width: 100%;
+  margin: 79px 70px 20px;
 }
 
-@media screen and (max-width: 1140px) {
+@media screen and (max-width: 1024px) {
   .Footer {
-    max-width: 708px;
+    margin: 79px 30px 20px;
   }
 }
 
-@media screen and (max-width: 708px) {
+@media screen and (max-width: 425px) {
   .Footer {
-    max-width: 300px;
-    margin-top: 59px;
+    margin: 79px 10px 20px;
   }
 }
 
@@ -28,7 +25,7 @@
   padding-bottom: 20px;
 }
 
-@media screen and (max-width: 708px) {
+@media screen and (max-width: 425px) {
   .Footer__title {
     font-size: 12px;
     padding-bottom: 20px;
@@ -42,13 +39,13 @@
   margin: 19px 0 20px;
 }
 
-@media screen and (max-width: 1140px) {
+@media screen and (max-width: 1024px) {
   .Footer__container {
-    margin: 19px 0 20px;
+    margin: 19px 0 0;
   }
 }
 
-@media screen and (max-width: 708px) {
+@media screen and (max-width: 425px) {
   .Footer__container{
     flex-direction: column-reverse;
     margin-top: 27px;
@@ -65,7 +62,7 @@
   padding: 0;
 }
 
-@media screen and (max-width: 708px) {
+@media screen and (max-width: 425px) {
   .Footer__year{
     font-size: 12px;
   }
@@ -79,7 +76,7 @@
   gap: 20px;
 }
 
-@media screen and (max-width: 708px) {
+@media screen and (max-width: 425px) {
   .Footer__links {
     flex-direction: column;
     align-items: center;
@@ -95,7 +92,7 @@
   text-decoration: none;
 }
 
-@media screen and (max-width: 708px) {
+@media screen and (max-width: 425px) {
   .Footer__link {
     font-size: 12px;
   }

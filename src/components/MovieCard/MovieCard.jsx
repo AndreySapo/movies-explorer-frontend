@@ -18,7 +18,6 @@ function MovieCard({ movie, saved }) {
   return (
     <li className="MovieCard">
       <div className="MovieCard__header">
-        {/* // ! временно переставлю */}
         <h2 className="MovieCard__title">{nameRU}</h2>
         <p className="MovieCard__duration">{duration} мин.</p>
       </div>

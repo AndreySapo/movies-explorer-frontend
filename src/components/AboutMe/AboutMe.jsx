@@ -15,7 +15,7 @@ function AboutMe() {
           <a href="https://github.com/andreySapo/" className="AboutMe__lc-link link-hover">Github</a>
         </li>
 
-        <li>
+        <li className='AboutMe__rc'>
           <img src={photo} alt="моя фотография" className='AboutMe__photo' />
         </li>
       </ul>

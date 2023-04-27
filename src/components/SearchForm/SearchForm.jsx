@@ -13,6 +13,7 @@ function SearchForm() {
             type="text"
             aria-label='Поле для ввода текста'
             className='SearchForm__input'
+            required
           />
           <div className="SearchForm__input-background">
             <img src={lens} alt="" className='SearchForm__input-background-img' />

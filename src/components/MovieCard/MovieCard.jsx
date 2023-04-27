@@ -1,13 +1,14 @@
 import { useState } from 'react';
 import './MovieCard.css'
 import buttonSaved from '../../images/btn-saved.svg';
-import moviePic from '../../images/movie.jpg';
 import x from '../../images/x.svg';
 
 // ! компонент одной карточки фильма
 function MovieCard({ movie, saved }) {
 
-  const { nameRU, duration } = movie; // TODO добавить изображение
+  const { nameRU, duration, image, trailerLink } = movie; // TODO добавить изображение
+
+  const imageURL = `https://api.nomoreparties.co` + image.url;
 
   const [isLiked, setIsLiked] = useState(false);
 
@@ -21,7 +22,9 @@ function MovieCard({ movie, saved }) {
         <h2 className="MovieCard__title">{nameRU}</h2>
         <p className="MovieCard__duration">{duration} мин.</p>
       </div>
-      <img src={moviePic} alt={nameRU} className="MovieCard__img" />
+      <a href={trailerLink} target="_blank" rel="noreferrer">
+        <img src={imageURL} alt={nameRU} className="MovieCard__img" />
+      </a>
       {
         saved ?
           <button className='MovieCard__button button-hover' onClick={handleSetIsLiked}>

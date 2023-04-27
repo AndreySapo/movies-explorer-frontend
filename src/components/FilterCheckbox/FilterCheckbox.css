@@ -2,9 +2,10 @@
   display: flex;
   gap: 14px;
   margin-left: 4px;
+  flex-basis: 197px;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 425px) {
   .FilterCheckbox {
     margin: 0;
   }
@@ -72,7 +73,7 @@
   color: #000000;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 425px) {
   .FilterCheckbox__checkbox-text {
     margin: 1px 0 0;
     font-size: 11px;

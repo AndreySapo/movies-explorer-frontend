@@ -1,18 +1,15 @@
 .SavedMovies {
-  max-width: 1140px;
-  width: 100%;
-  margin: 0 auto 80px;
+  margin: 0 70px 80px;
 }
 
-@media screen and (max-width: 1280px) {
+@media screen and (max-width: 1024px) {
   .SavedMovies {
-    max-width: 708px;
+    margin: 0 30px 80px;
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 425px) {
   .SavedMovies {
-    max-width: 300px;
-    margin: 0 auto 101px;
+    margin: 0 10px 80px;
   }
 }

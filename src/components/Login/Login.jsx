@@ -36,7 +36,7 @@ function Login() {
         </ul>
         <button type="submit" className='Login__button button-hover'>Войти</button>
       </form>
-      <Link to='/signin' className='Login__redirect-link link-hover'>Ещё не зарегистрированы?&nbsp;<span>Регистрация</span></Link>
+      <Link to='/signup' className='Login__redirect-link link-hover'>Ещё не зарегистрированы?&nbsp;<span>Регистрация</span></Link>
     </main>
   );
 }

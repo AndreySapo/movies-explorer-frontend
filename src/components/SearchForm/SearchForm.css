@@ -1,107 +1,83 @@
 .SearchForm {
+  position: relative;
+  margin-top: 70px;
   border-bottom: 1px solid #E8E8E8;
   padding-bottom: 69px;
-  z-index: 1;
 }
 
-@media screen and (max-width: 1280px) {
+@media screen and (max-width: 1024px) {
   .SearchForm {
-    padding-bottom: 109px;
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .SearchForm {
-    max-width: 300px;
-    margin: 0 auto;
+    margin-top: 80px;
     padding-bottom: 109px;
   }
 }
 
 .SearchForm__main-container {
   display: flex;
-  gap: 24px;
+  justify-content: space-between;
   align-items: center;
-  background: #F9F9F9;
-  border-radius: 9px;
   height: 72px;
-  margin-top: 70px;
+  border-radius: 9px;
+  background: #F9F9F9;
 }
 
-@media screen and (max-width: 1280px) {
-  .SearchForm__main-container {
-    margin-top: 87px;
-    gap: 14px;
-  }
-}
-
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 425px) {
   .SearchForm__main-container {
     flex-direction: column;
-    gap: 60px;
-    margin-top: 93px;
+    gap: 46px;
   }
 }
 
 .SearchForm__search-container {
-  display: flex;
   position: relative;
-  max-width: 890px;
-  width: 100%;
+  flex-basis: 887px;
 }
 
-@media screen and (max-width: 1280px) {
+@media screen and (max-width: 1024px) {
   .SearchForm__search-container {
-    max-width: 487px;
+    flex-basis: 503px;
   }
 }
 
 .SearchForm__input {
-  border: none;
   margin: 0;
-  padding: 0;
-  background-color: #F9F9F9;
+  padding: 0 0 0 29px;
+  border: none;
+  background: #F9F9F9;
+  height: 72px;
   width: 100%;
 }
 
 .SearchForm__input-background {
   position: absolute;
-  display: flex;
-  align-items: center;
-  top: 10px;
+  top: 26px;
   left: 30px;
+  display: flex;
   gap: 20px;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 425px) {
   .SearchForm__input-background {
-    top: 26px;
-    left: 19px;
+    left: -4px;
   }
 }
 
-.SearchForm__input-background-img {
-  margin: 0;
-  padding: 0;
-  display: block;
-}
-
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 425px) {
   .SearchForm__input-background-img {
     display: none;
   }
 }
 
 .SearchForm__input-background-text {
+  margin: 0;
+  padding: 0;
   font-weight: 400;
   font-size: 18px;
   line-height: 111%;
   color: #A0A0A0;
-  margin: 0;
-  padding: 0;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 425px) {
   .SearchForm__input-background-text {
     font-size: 14px;
     line-height: 143%;
@@ -109,31 +85,37 @@
 }
 
 .SearchForm__submit {
-  border: none;
-  background: #F9F9F9;
-  margin: 3px 7px 0 0;
+  position: absolute;
+  top: 19px;
+  right: 4px;
+  margin: 0;
   padding: 0;
+  border: none;
+  background: url('../../images/find.svg') no-repeat;
+  width: 34px;
+  height: 34px;
 }
 
-@media screen and (max-width: 1140px) {
+@media screen and (max-width: 1024px) {
   .SearchForm__submit {
-    margin: 3px 6px 0 0;
+    right: -2px;
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 425px) {
   .SearchForm__submit {
-    margin: 19px 19px 0 0;
+    right: -4px;
   }
 }
 
 .splitter {
-  height: 40px;
-  width: 1px;
   background: #E8E8E8;
+  transform: rotate(90deg);
+  height: 1px;
+  width: 40px;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 425px) {
   .splitter {
     display: none;
   }

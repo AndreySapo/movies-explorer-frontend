@@ -1,7 +1,6 @@
 import './SearchForm.css'
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 import lens from '../../images/lens.svg';
-import findBtn from '../../images/find.svg';
 
 
 // ! форма поиска, куда пользователь будет вводить запрос
@@ -24,11 +23,11 @@ function SearchForm() {
             aria-label='Кнопка поиска'
             className='SearchForm__submit button-hover'
           >
-            <img
+            {/* <img
               src={findBtn}
               alt="Кнопка поиска"
               className='SearchForm__submit-img'
-            />
+            /> */}
           </button>
 
         </form>

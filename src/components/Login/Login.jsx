@@ -2,10 +2,24 @@ import { Link } from 'react-router-dom';
 import './Login.css';
 import logo from '../../images/logo.svg';
 import { useFormWithValidation } from '../../utils/Validation.js';
+import { useEffect } from 'react';
 
 // ! компонент страницы регистрации
 function Login({ handleSignIn }) {
   const { values, handleChange, errors, isValid, resetForm } = useFormWithValidation();
+
+
+  useEffect(() => {
+    const submitButton = document.querySelector('.Login__button');
+
+    if (isValid === true) {
+      submitButton.classList.remove('Login__button_disabled')
+      submitButton.setAttribute('disabled', false)
+    } else {
+      submitButton.classList.add('Login__button_disabled')
+      submitButton.setAttribute('disabled', true)
+    }
+  }, [isValid])
 
   function onSubmit(event) {
     event.preventDefault();
@@ -52,7 +66,7 @@ function Login({ handleSignIn }) {
             <span className='Login__form-element-error'>{errors.password}</span>
           </li>
         </ul>
-        <button type="submit" className='Login__button button-hover'>Войти</button>
+        <button type="submit" className='Login__button Login__button_disabled button-hover' disabled={true}>Войти</button>
       </form>
       <Link to='/signup' className='Login__redirect-link link-hover'>Ещё не зарегистрированы?&nbsp;<span>Регистрация</span></Link>
     </main>

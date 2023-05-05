@@ -8,6 +8,18 @@ import { useEffect } from 'react';
 function Register({handleSignUp, errorResponse}) {
   const { values, handleChange, errors, isValid, resetForm } = useFormWithValidation();
 
+  useEffect(() => {
+    const submitButton = document.querySelector('.Register__button');
+
+    if (isValid === true) {
+      submitButton.classList.remove('Register__button_disabled')
+      submitButton.setAttribute('disabled', false)
+    } else {
+      submitButton.classList.add('Register__button_disabled')
+      submitButton.setAttribute('disabled', true)
+    }
+  }, [isValid])
+
   function onSubmit(event) {
     event.preventDefault();
     if (isValid) {
@@ -75,7 +87,7 @@ function Register({handleSignUp, errorResponse}) {
             <span className='Register__form-element-error'>{errors.password}</span>
           </li>
         </ul>
-        <button type="submit" className='Register__button button-hover'>Зарегистрироваться</button>
+        <button type="submit" className='Register__button Register__button_disabled button-hover'>Зарегистрироваться</button>
       </form>
       <Link to='/signin' className='Register__redirect-link link-hover'>Уже зарегистрированы?&nbsp;<span>Войти</span></Link>
     </main>

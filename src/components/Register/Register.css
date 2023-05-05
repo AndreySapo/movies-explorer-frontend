@@ -142,6 +142,11 @@
   }
 }
 
+.Register__button_disabled {
+  background: #F8F8F8;
+  color: #C2C2C2;
+}
+
 .Register__redirect-link {
   text-decoration: none;
   font-weight: 400;

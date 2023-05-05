@@ -18,6 +18,8 @@ function App() {
 
   const [currentUser, setCurrentUser] = React.useState({});
 
+  const [errorResponse, setErrorResponse] = React.useState();
+
   const navigate = useNavigate();
 
   function handleMenuPopupOpen() {
@@ -30,12 +32,12 @@ function App() {
   React.useEffect(() => {
     if (isLoggedIn) {
       exampleMainApi.getUserInfo()
-      .then((user) => {
-        setCurrentUser(user)
-      })
-      .catch((err) => {
-        console.log(err); // выведем ошибку в консоль
-      })
+        .then((user) => {
+          setCurrentUser(user)
+        })
+        .catch((err) => {
+          console.log(err); // выведем ошибку в консоль
+        })
     }
   }, [isLoggedIn])
 
@@ -50,6 +52,18 @@ function App() {
       .catch((err) => {
         // TODO проанализировать ошибку и швырнуть что-нибудь в Login, чтобы отрисовался текст в ошибку Login__fetchError
         console.log(err); // выведем ошибку в консоль
+      })
+  }
+
+  function handleSignUp({ email, password, name }) {
+    exampleMainApi.signup({ email, password, name })
+      .then(() => {
+        handleSignIn({email, password})
+      })
+      .catch((err) => {
+        // console.log(err); // выведем ошибку в консоль
+
+        setErrorResponse(err);
       })
   }
 
@@ -70,7 +84,7 @@ function App() {
           <Route
             path='/signup/*'
             element={
-              <Register />
+              <Register handleSignUp={handleSignUp} errorResponse={errorResponse}/>
             }
           />
           <Route

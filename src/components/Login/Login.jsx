@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import './Login.css';
 import logo from '../../images/logo.svg';
-import { useFormWithValidation } from '../../utils/Validation';
+import { useFormWithValidation } from '../../utils/Validation.js';
 
 // ! компонент страницы регистрации
 function Login({ handleSignIn }) {

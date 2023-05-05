@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import './Register.css';
 import logo from '../../images/logo.svg';
-import { useFormWithValidation } from '../../utils/Validation';
+import { useFormWithValidation } from '../../utils/Validation.js';
 import { useEffect } from 'react';
 
 // ! компонент страницы регистрации

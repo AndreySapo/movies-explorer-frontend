@@ -13,7 +13,7 @@ function Movies({ isLoggedIn, onOpen }) {
   const footer = true;
 
   return (
-    <Layout isLoggedIn={true} onOpen={onOpen} header={header} footer={footer}>
+    <Layout isLoggedIn={isLoggedIn} onOpen={onOpen} header={header} footer={footer}>
       <main className="Movies">
         <SearchForm />
         {loading ? <Preloader /> : <MoviesCardList />}

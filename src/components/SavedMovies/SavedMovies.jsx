@@ -11,7 +11,7 @@ function SavedMovies({ isLoggedIn, onOpen }) {
   const footer = true;
 
   return (
-    <Layout isLoggedIn={true} onOpen={onOpen} header={header} footer={footer}>
+    <Layout isLoggedIn={isLoggedIn} onOpen={onOpen} header={header} footer={footer}>
       <main className='SavedMovies'>
         <SearchForm />
         <MoviesCardList saved={saved} />

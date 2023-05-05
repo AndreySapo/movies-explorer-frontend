@@ -11,6 +11,7 @@ import Profile from '../Profile/Profile';
 import Register from '../Register/Register';
 import { CurrentUserContext } from '../../utils/UserContext';
 import { exampleMainApi } from '../../utils/MainApi';
+import ProtectedRoute from '../ProtectedRoute';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
@@ -58,7 +59,7 @@ function App() {
   function handleSignUp({ email, password, name }) {
     exampleMainApi.signup({ email, password, name })
       .then(() => {
-        handleSignIn({email, password})
+        handleSignIn({ email, password })
       })
       .catch((err) => {
         // console.log(err); // выведем ошибку в консоль
@@ -84,7 +85,10 @@ function App() {
           <Route
             path='/signup/*'
             element={
-              <Register handleSignUp={handleSignUp} errorResponse={errorResponse}/>
+              <Register
+                handleSignUp={handleSignUp}
+                errorResponse={errorResponse}
+              />
             }
           />
           <Route
@@ -93,17 +97,18 @@ function App() {
               <Login handleSignIn={handleSignIn} />
             }
           />
-          {/* защищенные маршруты */}
           <Route
             path="/"
             element={
               <Main isLoggedIn={isLoggedIn} />
             }
           />
+          {/* защищенные маршруты */}
           <Route
             path="/movies/*"
             element={
-              <Movies
+              <ProtectedRoute
+                component={Movies}
                 isLoggedIn={isLoggedIn}
                 onOpen={handleMenuPopupOpen}
               />
@@ -112,7 +117,8 @@ function App() {
           <Route
             path="/saved-movies/*"
             element={
-              <SavedMovies
+              <ProtectedRoute
+                component={SavedMovies}
                 isLoggedIn={isLoggedIn}
                 onOpen={handleMenuPopupOpen}
               />
@@ -121,7 +127,8 @@ function App() {
           <Route
             path="/profile/*"
             element={
-              <Profile
+              <ProtectedRoute
+                component={Profile}
                 isLoggedIn={isLoggedIn}
                 onOpen={handleMenuPopupOpen} handleSignOut={handleSignOut} />} />
           {/* незащищенный финальный маршрут */}

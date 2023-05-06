@@ -22,6 +22,7 @@ function App() {
   const [registerErrorResponse, setRegisterErrorResponse] = React.useState();
   const [loginErrorResponse, setLoginErrorResponse] = React.useState();
 
+  const token = localStorage.getItem('jwt');
   const navigate = useNavigate();
 
   function handleMenuPopupOpen() {
@@ -41,7 +42,23 @@ function App() {
           console.log(err); // выведем ошибку в консоль
         })
     }
-  }, [isLoggedIn])
+  }, [isLoggedIn]);
+
+  React.useEffect(() => {
+    if (token) {
+      exampleMainApi.getUserInfo()
+        .then((result) => {
+          if (result) {
+            setIsLoggedIn(true);
+            navigate({ replace: false });
+          }
+        })
+        .catch(() => {
+          setIsLoggedIn(false);
+        })
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [token])
 
   function handleSignIn({ email, password }) {
     exampleMainApi.signin({ email, password })
@@ -97,7 +114,7 @@ function App() {
               <Login
                 handleSignIn={handleSignIn}
                 errorResponse={loginErrorResponse}
-                />
+              />
             }
           />
           <Route

@@ -19,7 +19,8 @@ function App() {
 
   const [currentUser, setCurrentUser] = React.useState({});
 
-  const [errorResponse, setErrorResponse] = React.useState();
+  const [registerErrorResponse, setRegisterErrorResponse] = React.useState();
+  const [loginErrorResponse, setLoginErrorResponse] = React.useState();
 
   const navigate = useNavigate();
 
@@ -49,22 +50,21 @@ function App() {
         document.cookie = `jwt=${token}`;
         navigate('/movies', { replace: true });
         setIsLoggedIn(true);
+        setLoginErrorResponse();
       })
       .catch((err) => {
-        // TODO проанализировать ошибку и швырнуть что-нибудь в Login, чтобы отрисовался текст в ошибку Login__fetchError
-        console.log(err); // выведем ошибку в консоль
+        setLoginErrorResponse(err);
       })
   }
 
   function handleSignUp({ email, password, name }) {
     exampleMainApi.signup({ email, password, name })
       .then(() => {
-        handleSignIn({ email, password })
+        handleSignIn({ email, password });
+        setRegisterErrorResponse();
       })
       .catch((err) => {
-        // console.log(err); // выведем ошибку в консоль
-
-        setErrorResponse(err);
+        setRegisterErrorResponse(err);
       })
   }
 
@@ -87,14 +87,17 @@ function App() {
             element={
               <Register
                 handleSignUp={handleSignUp}
-                errorResponse={errorResponse}
+                errorResponse={registerErrorResponse}
               />
             }
           />
           <Route
             path='/signin/*'
             element={
-              <Login handleSignIn={handleSignIn} />
+              <Login
+                handleSignIn={handleSignIn}
+                errorResponse={loginErrorResponse}
+                />
             }
           />
           <Route

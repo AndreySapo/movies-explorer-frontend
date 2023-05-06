@@ -2,18 +2,20 @@ import { Link } from 'react-router-dom';
 import './Register.css';
 import logo from '../../images/logo.svg';
 import { useFormWithValidation } from '../../utils/Validation.js';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 // ! компонент страницы регистрации
 function Register({handleSignUp, errorResponse}) {
   const { values, handleChange, errors, isValid, resetForm } = useFormWithValidation();
+
+  const [fetchTextError, setFetchTextError] = useState('');
 
   useEffect(() => {
     const submitButton = document.querySelector('.Register__button');
 
     if (isValid === true) {
       submitButton.classList.remove('Register__button_disabled')
-      submitButton.setAttribute('disabled', false)
+      submitButton.removeAttribute('disabled')
     } else {
       submitButton.classList.add('Register__button_disabled')
       submitButton.setAttribute('disabled', true)
@@ -32,10 +34,12 @@ function Register({handleSignUp, errorResponse}) {
 
   useEffect(() => {
     if (errorResponse === 409) {
-      console.log('Пользователь с таким email уже существует.')
+      setFetchTextError('Пользователь с таким email уже существует.')
+    } else if (errorResponse === 500) {
+      setFetchTextError('На сервере произошла ошибка.')
     } else if (errorResponse === '')
     {
-      console.log('удаляем ошибку')
+      setFetchTextError('')
     }
   }, [errorResponse])
 
@@ -89,6 +93,7 @@ function Register({handleSignUp, errorResponse}) {
         </ul>
         <button type="submit" className='Register__button Register__button_disabled button-hover'>Зарегистрироваться</button>
       </form>
+      <p className='Register__fetch-error'>{fetchTextError}</p>
       <Link to='/signin' className='Register__redirect-link link-hover'>Уже зарегистрированы?&nbsp;<span>Войти</span></Link>
     </main>
   );

@@ -2,19 +2,20 @@ import { Link } from 'react-router-dom';
 import './Login.css';
 import logo from '../../images/logo.svg';
 import { useFormWithValidation } from '../../utils/Validation.js';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 // ! компонент страницы регистрации
-function Login({ handleSignIn }) {
+function Login({ handleSignIn, errorResponse }) {
   const { values, handleChange, errors, isValid, resetForm } = useFormWithValidation();
 
+  const [fetchTextError, setFetchTextError] = useState('');
 
   useEffect(() => {
     const submitButton = document.querySelector('.Login__button');
 
     if (isValid === true) {
       submitButton.classList.remove('Login__button_disabled')
-      submitButton.setAttribute('disabled', false)
+      submitButton.removeAttribute('disabled')
     } else {
       submitButton.classList.add('Login__button_disabled')
       submitButton.setAttribute('disabled', true)
@@ -30,6 +31,17 @@ function Login({ handleSignIn }) {
     }
     resetForm();
   }
+
+  useEffect(() => {
+    if (errorResponse === 401) {
+      setFetchTextError('Вы ввели неправильный логин или пароль.')
+    } else if (errorResponse === 500) {
+      setFetchTextError('На сервере произошла ошибка.')
+    } else if (errorResponse === '')
+    {
+      setFetchTextError('')
+    }
+  }, [errorResponse])
 
   return (
     <main className="Login">
@@ -68,6 +80,7 @@ function Login({ handleSignIn }) {
         </ul>
         <button type="submit" className='Login__button Login__button_disabled button-hover' disabled={true}>Войти</button>
       </form>
+      <p className='Login__fetch-error'>{fetchTextError}</p>
       <Link to='/signup' className='Login__redirect-link link-hover'>Ещё не зарегистрированы?&nbsp;<span>Регистрация</span></Link>
     </main>
   );

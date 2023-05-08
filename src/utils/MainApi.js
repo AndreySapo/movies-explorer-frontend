@@ -65,6 +65,29 @@ class MainApi {
       })
   }
 
+  setUserInfo({ name, email }) {
+    // TODO подумать как прикрутить куки
+    const jwt = localStorage.getItem('jwt');
+
+    return fetch(this.link + '/users/me', {
+      headers: {
+        "Content-Type": "application/json",
+        // "Cookie": cookie,
+        "Authorization": `Bearer ${jwt}`
+      },
+      method: "PATCH",
+      body: JSON.stringify(
+        {
+          "email": `${email}`,
+          "name": `${name}`,
+        }
+      )
+    })
+      .then(response => {
+        return this._getResponseData(response);
+      })
+  }
+
 }
 
 export const exampleMainApi = new MainApi({ link: 'http://localhost:3001' })

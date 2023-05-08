@@ -57,7 +57,7 @@ function App() {
           setIsLoggedIn(false);
         })
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [token])
 
   function handleSignIn({ email, password }) {
@@ -88,9 +88,35 @@ function App() {
   function handleSignOut() {
     document.cookie = "jwt=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
     localStorage.removeItem('jwt');
+    localStorage.removeItem('found-movies');
+    localStorage.removeItem('search-text');
+    localStorage.removeItem('shorts');
     setCurrentUser({});
     navigate('/', { replace: true });
     setIsLoggedIn(false);
+  }
+
+  function handleEditProfile(values, setFetchErrorText, setEditState) {
+    exampleMainApi.setUserInfo(values)
+      .then((user) => {
+        setCurrentUser({
+          email: user.email,
+          name: user.name
+        })
+      })
+      .then (() => {
+        setEditState(false);
+        setFetchErrorText('')
+      })
+      .catch((err) => {
+        if (err === 409) {
+          setFetchErrorText('Пользователь с таким email уже существует.')
+        } else if (err === 500) {
+          setFetchErrorText('При обновлении профиля произошла ошибка.')
+        } else {
+          console.log(err)
+        }
+      })
   }
 
   return (
@@ -150,7 +176,12 @@ function App() {
               <ProtectedRoute
                 component={Profile}
                 isLoggedIn={isLoggedIn}
-                onOpen={handleMenuPopupOpen} handleSignOut={handleSignOut} />} />
+                onOpen={handleMenuPopupOpen}
+                handleSignOut={handleSignOut}
+                handleEditProfile={handleEditProfile}
+              />
+            }
+          />
           {/* незащищенный финальный маршрут */}
           <Route path="*" element={<NotFound />} />
         </Routes>

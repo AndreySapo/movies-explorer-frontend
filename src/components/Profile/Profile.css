@@ -24,6 +24,13 @@
   }
 }
 
+.Profile__form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .Profile__list {
   margin: 123px 0 0 0;
   padding: 0;
@@ -54,6 +61,7 @@
   width: 100%;
   border-bottom: 1px solid #E8E8E8;
   padding-bottom: 16px;
+  position: relative;
 }
 
 .Profile__list-el:last-child {
@@ -68,13 +76,31 @@
   line-height: calc((13/11)*100%);
 }
 
-.Profile__list-el-text {
+.Profile__list-el-input {
   margin: 0;
   padding: 0;
   font-weight: 400;
   font-size: 11px;
   line-height: 13px;
   line-height: calc((13/11)*100%);
+  border: none;
+  background: none;
+  text-align: right;
+}
+
+.Profile__list-el-input-error {
+  position: absolute;
+  bottom: 5px;
+  right: 0;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: calc((10/12)*100%);
+  color: #FF3055;
+  text-align: right;
+}
+
+.Profile__list-el-input-error:last-of-type {
+  bottom: 0;
 }
 
 .Profile__edit-button {
@@ -101,6 +127,36 @@
   }
 }
 
+.Profile__form-error {
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  bottom: 55px;
+  font-weight: 400;
+  font-size: 11px;
+  line-height: calc((13/11)*100%);
+  color: #FF004C;
+}
+
+.Profile__submit-button {
+  background: #3456F3;
+  border: none;
+  width: 100%;
+  max-width: 410px;
+  height: 45px;
+  border-radius: 3px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: calc((17/14)*100%);
+  color: #FFFFFF;
+  margin: 179px 0 0 0;
+  padding: 0;
+}
+
+.Profile__submit-button_disabled {
+  background: #F8F8F8;
+  color: #C2C2C2;
+}
 
 .Profile__exit-button {
   margin: 0;

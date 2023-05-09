@@ -24,6 +24,7 @@ function App() {
   const [loginErrorResponse, setLoginErrorResponse] = React.useState();
 
   const [allMovies, setAllMovies] = React.useState([]);
+  const [savedMovies, setSavedMovies] = React.useState([]);
   const [moviesFromSearch, setMoviesFromSearch] = React.useState([]);
 
   const [shortsIsChecked, setShortsIsChecked] = React.useState(false);
@@ -56,6 +57,17 @@ function App() {
     if (isLoggedIn) {
       exampleMoviesApi.getMovies()
         .then((data) => setAllMovies(data))
+        .catch((err) => {
+          console.log(err); // выведем ошибку в консоль
+        })
+    }
+  }, [isLoggedIn]);
+
+  // получаем все сохраненные фильмы при логине
+  React.useEffect(() => {
+    if (isLoggedIn) {
+      exampleMainApi.getMovies()
+        .then((result) => setSavedMovies(result.data))
         .catch((err) => {
           console.log(err); // выведем ошибку в консоль
         })
@@ -151,6 +163,21 @@ function App() {
     setShortsIsChecked(!shortsIsChecked)
   }
 
+  function handleButtonSave(movie, setIsSaveButtonActive) {
+
+    if (!savedMovies.find(savedMovie => savedMovie.movieId === movie.id)) {
+
+      exampleMainApi.addMovie(movie)
+        .then((savedMovie) => {
+          setSavedMovies([...savedMovies, savedMovie])
+          setIsSaveButtonActive(true);
+        })
+        .catch((err) => {
+          console.log(err); // выведем ошибку в консоль
+        })
+    }
+  }
+
 
   return (
     <div className="App">
@@ -194,6 +221,7 @@ function App() {
                 movies={moviesFromSearch}
                 shortsIsChecked={shortsIsChecked}
                 handleCheck={handleCheck}
+                handleButtonSave={handleButtonSave}
               />
             }
           />
@@ -204,7 +232,7 @@ function App() {
                 component={SavedMovies}
                 isLoggedIn={isLoggedIn}
                 onOpen={handleMenuPopupOpen}
-                movies={[]}
+                movies={savedMovies}
               />
             }
           />

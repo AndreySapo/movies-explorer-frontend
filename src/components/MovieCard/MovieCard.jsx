@@ -1,20 +1,17 @@
-import { useState } from 'react';
 import './MovieCard.css'
 import buttonSaved from '../../images/btn-saved.svg';
 import x from '../../images/x.svg';
+import { useState } from 'react';
 
 // ! компонент одной карточки фильма
-function MovieCard({ movie, saved }) {
+function MovieCard({ movie, saved, handleButtonSave }) {
 
   const { nameRU, duration, image, trailerLink } = movie;
 
-  const imageURL = `https://api.nomoreparties.co` + image.url;
+  const imageURL = !saved ? `https://api.nomoreparties.co` + image.url : image;
+  const [isSaveButtonActive, setIsSaveButtonActive] = useState(false);
 
-  const [isLiked, setIsLiked] = useState(false);
-
-  function handleSetIsLiked() {
-    setIsLiked(!isLiked);
-  }
+  const onClick = () => handleButtonSave(movie, setIsSaveButtonActive);
 
   return (
     <li className="MovieCard">
@@ -27,17 +24,17 @@ function MovieCard({ movie, saved }) {
       </a>
       {
         saved ?
-          <button className='MovieCard__button button-hover' onClick={handleSetIsLiked}>
+          <button className='MovieCard__button button-hover'>
             <img src={x} alt="" />
           </button> :
 
-          isLiked
+        isSaveButtonActive
             ?
-            <button className='MovieCard__button MovieCard__button_active button-hover' onClick={handleSetIsLiked}>
+            <button className='MovieCard__button MovieCard__button_active button-hover' >
               <img src={buttonSaved} alt="" />
             </button>
             :
-            <button className='MovieCard__button button-hover' onClick={handleSetIsLiked}>
+            <button className='MovieCard__button button-hover' onClick={onClick}>
               Сохранить
             </button>
       }

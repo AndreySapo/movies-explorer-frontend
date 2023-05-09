@@ -5,7 +5,7 @@ import Layout from '../Layout/Layout';
 import Preloader from '../Preloader/Preloader';
 
 // ! компонент страницы с поиском по фильмам
-function Movies({ isLoggedIn, onOpen, handleSearchMovie, movies, shortsIsChecked, handleCheck }) {
+function Movies({ isLoggedIn, onOpen, handleSearchMovie, movies, shortsIsChecked, handleCheck, handleButtonSave }) {
 
   const loading = false;
   const header = true;
@@ -15,7 +15,7 @@ function Movies({ isLoggedIn, onOpen, handleSearchMovie, movies, shortsIsChecked
     <Layout isLoggedIn={isLoggedIn} onOpen={onOpen} header={header} footer={footer}>
       <main className="Movies">
         <SearchForm handleSearchMovie={handleSearchMovie} isChecked={shortsIsChecked} handleCheck={handleCheck}/>
-        {loading ? <Preloader /> : <MoviesCardList movies={movies} />}
+        {loading ? <Preloader /> : <MoviesCardList movies={movies} handleButtonSave={handleButtonSave}/>}
       </main>
     </Layout>
   );

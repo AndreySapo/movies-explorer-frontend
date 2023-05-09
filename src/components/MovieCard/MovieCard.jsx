@@ -6,7 +6,7 @@ import x from '../../images/x.svg';
 // ! компонент одной карточки фильма
 function MovieCard({ movie, saved }) {
 
-  const { nameRU, duration, image, trailerLink } = movie; // TODO добавить изображение
+  const { nameRU, duration, image, trailerLink } = movie;
 
   const imageURL = `https://api.nomoreparties.co` + image.url;
 

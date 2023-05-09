@@ -1,21 +1,48 @@
 import './MoviesCardList.css';
-import movies from '../../utils/movies.json'; // TODO удалить в дальнейшем
 import MovieCard from '../MovieCard/MovieCard';
+import { useEffect, useState } from 'react';
 
 // !  компонент, который управляет отрисовкой карточек фильмов на страницу и их количеством
-function MoviesCardList({ saved }) {
-  const slicedMovies = movies.slice(0, 8);
+function MoviesCardList({movies}) {
+  const [cardsToRender, setCardsToRender] = useState([]);
+  const [maxCards, setMaxCards] = useState(0)
+  const [numberOfRenderedCards, setNumberOfRenderedCards] = useState(12);
+  const [increaseMaxCards, setIncreaseMaxCards] = useState(3);
+  const localStorageMovies = JSON.parse(localStorage.getItem('found-movies'));
+
+  useEffect(() => {    
+    if (movies.length !== 0) {
+      setCardsToRender(movies.slice(0, numberOfRenderedCards));
+      setMaxCards(movies.length)
+    } else if (localStorageMovies) {
+      setCardsToRender(localStorageMovies.slice(0, numberOfRenderedCards))
+      setMaxCards(localStorageMovies.length)
+    } else {
+      setCardsToRender([])
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [movies, numberOfRenderedCards])
+
+  const handleButtonMore = () => setNumberOfRenderedCards(numberOfRenderedCards + increaseMaxCards);
 
   return (
     <section className="MoviesCardList">
-      <ul className='MoviesCardList__container'>
-        {
-          slicedMovies.map((movie) => {
-            return <MovieCard key={movie.id} movie={movie} saved={saved}/>
-          })
-        }
-      </ul>
-      <button className='MoviesCardList__button button-hover'>Ещё</button>
+      {
+        cardsToRender.length !== 0 ?
+          <ul className='MoviesCardList__container'>
+            {cardsToRender.map((movie) => {
+              return <MovieCard key={movie.id} movie={movie} />
+            })}
+          </ul>
+          :
+          <p className='MoviesCardList__text'>Ничего не найдено</p>
+      }
+      {
+        numberOfRenderedCards < maxCards ?
+        <button className='MoviesCardList__button button-hover' onClick={handleButtonMore}>Ещё</button>
+        :
+        <></>
+      }
     </section>
   );
 }

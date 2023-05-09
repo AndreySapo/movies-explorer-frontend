@@ -12,6 +12,7 @@ import Register from '../Register/Register';
 import { CurrentUserContext } from '../../utils/UserContext';
 import { exampleMainApi } from '../../utils/MainApi';
 import ProtectedRoute from '../ProtectedRoute';
+import { exampleMoviesApi } from '../../utils/MoviesApi';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
@@ -21,6 +22,11 @@ function App() {
 
   const [registerErrorResponse, setRegisterErrorResponse] = React.useState();
   const [loginErrorResponse, setLoginErrorResponse] = React.useState();
+
+  const [allMovies, setAllMovies] = React.useState([]);
+  const [moviesFromSearch, setMoviesFromSearch] = React.useState([]);
+
+  const [shortsIsChecked, setShortsIsChecked] = React.useState(false);
 
   const token = localStorage.getItem('jwt');
   const navigate = useNavigate();
@@ -32,6 +38,7 @@ function App() {
     setIsMenuPopupOpen(false);
   }
 
+  // получаем юзера при логине
   React.useEffect(() => {
     if (isLoggedIn) {
       exampleMainApi.getUserInfo()
@@ -44,6 +51,18 @@ function App() {
     }
   }, [isLoggedIn]);
 
+  // получаем все фильмы при логине
+  React.useEffect(() => {
+    if (isLoggedIn) {
+      exampleMoviesApi.getMovies()
+        .then((data) => setAllMovies(data))
+        .catch((err) => {
+          console.log(err); // выведем ошибку в консоль
+        })
+    }
+  }, [isLoggedIn]);
+
+  // получаем информацию при токене и меняем состояние страницы
   React.useEffect(() => {
     if (token) {
       exampleMainApi.getUserInfo()
@@ -92,6 +111,7 @@ function App() {
     localStorage.removeItem('search-text');
     localStorage.removeItem('shorts');
     setCurrentUser({});
+    setMoviesFromSearch([]);
     navigate('/', { replace: true });
     setIsLoggedIn(false);
   }
@@ -104,7 +124,7 @@ function App() {
           name: user.name
         })
       })
-      .then (() => {
+      .then(() => {
         setEditState(false);
         setFetchErrorText('')
       })
@@ -118,6 +138,19 @@ function App() {
         }
       })
   }
+
+  function handleSearchMovie(values) {
+    const searchArray = allMovies.filter(movie => movie.nameRU.toLowerCase().includes(values.text.toLowerCase()));
+    shortsIsChecked ? setMoviesFromSearch(searchArray.filter(movie => movie.duration < 40)) : setMoviesFromSearch(searchArray);
+    localStorage.setItem('found-movies', JSON.stringify(allMovies.filter(movie => movie.nameRU.toLowerCase().includes(values.text.toLowerCase()))));
+    localStorage.setItem('search-text', JSON.stringify(values.text));
+    localStorage.setItem('shorts', JSON.stringify(shortsIsChecked));
+  }
+
+  const handleCheck = () => {
+    setShortsIsChecked(!shortsIsChecked)
+  }
+
 
   return (
     <div className="App">
@@ -157,6 +190,10 @@ function App() {
                 component={Movies}
                 isLoggedIn={isLoggedIn}
                 onOpen={handleMenuPopupOpen}
+                handleSearchMovie={handleSearchMovie}
+                movies={moviesFromSearch}
+                shortsIsChecked={shortsIsChecked}
+                handleCheck={handleCheck}
               />
             }
           />
@@ -167,6 +204,7 @@ function App() {
                 component={SavedMovies}
                 isLoggedIn={isLoggedIn}
                 onOpen={handleMenuPopupOpen}
+                movies={[]}
               />
             }
           />

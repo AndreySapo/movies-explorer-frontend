@@ -4,9 +4,8 @@ import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 
 // ! компонент страницы с поиском по фильмам
-function SavedMovies({ isLoggedIn, onOpen }) {
+function SavedMovies({ isLoggedIn, onOpen, movies }) {
 
-  const saved = true;
   const header = true;
   const footer = true;
 
@@ -14,7 +13,7 @@ function SavedMovies({ isLoggedIn, onOpen }) {
     <Layout isLoggedIn={isLoggedIn} onOpen={onOpen} header={header} footer={footer}>
       <main className='SavedMovies'>
         <SearchForm />
-        <MoviesCardList saved={saved} />
+        <MoviesCardList movies={movies}/>
       </main>
     </Layout>
   );

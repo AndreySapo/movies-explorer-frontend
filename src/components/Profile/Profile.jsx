@@ -6,7 +6,7 @@ import { useFormWithValidation } from '../../utils/Validation';
 
 // ! компонент страницы изменения профиля
 function Profile({ isLoggedIn, onOpen, handleSignOut, handleEditProfile }) {
-  const currentUser = React.useContext(CurrentUserContext);
+  const {currentUser} = React.useContext(CurrentUserContext);
   const { values,
     handleChange,
     errors,

@@ -181,7 +181,7 @@ function App() {
 
   return (
     <div className="App">
-      <CurrentUserContext.Provider value={currentUser}>
+      <CurrentUserContext.Provider value={{currentUser, savedMovies}}>
         <MenuPopup isOpen={isMenuPopupOpen} onClose={handleMenuPopupClose} />
         <Routes>
           {/* незащищенные маршруты */}

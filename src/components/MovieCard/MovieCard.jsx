@@ -1,10 +1,13 @@
 import './MovieCard.css'
 import buttonSaved from '../../images/btn-saved.svg';
 import x from '../../images/x.svg';
-import { useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import { CurrentUserContext } from '../../utils/UserContext';
 
 // ! компонент одной карточки фильма
 function MovieCard({ movie, saved, handleButtonSave }) {
+
+  const { savedMovies } = useContext(CurrentUserContext);
 
   const { nameRU, duration, image, trailerLink } = movie;
 
@@ -12,6 +15,13 @@ function MovieCard({ movie, saved, handleButtonSave }) {
   const [isSaveButtonActive, setIsSaveButtonActive] = useState(false);
 
   const onClick = () => handleButtonSave(movie, setIsSaveButtonActive);
+
+  useEffect(() => {
+    if (savedMovies.find((savedMovie) => savedMovie.movieId === movie.id)) {
+      setIsSaveButtonActive(true);
+    }
+  }, [])
+
 
   return (
     <li className="MovieCard">
@@ -28,9 +38,9 @@ function MovieCard({ movie, saved, handleButtonSave }) {
             <img src={x} alt="" />
           </button> :
 
-        isSaveButtonActive
+          isSaveButtonActive
             ?
-            <button className='MovieCard__button MovieCard__button_active button-hover' >
+            <button className='MovieCard__button MovieCard__button_active' disabled>
               <img src={buttonSaved} alt="" />
             </button>
             :

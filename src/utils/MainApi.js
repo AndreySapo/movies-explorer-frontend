@@ -1,6 +1,6 @@
 class MainApi {
   constructor({ link }) {
-    this.link = link;
+    this._link = link;
   }
 
   _getResponseData(response) {
@@ -12,7 +12,7 @@ class MainApi {
   }
 
   signin({ email, password }) {
-    return fetch(this.link + '/signin', {
+    return fetch(this._link + '/signin', {
       headers: {
         "Content-Type": "application/json"
       },
@@ -30,7 +30,7 @@ class MainApi {
   }
 
   signup({ email, password, name }) {
-    return fetch(this.link + '/signup', {
+    return fetch(this._link + '/signup', {
       headers: {
         "Content-Type": "application/json"
       },
@@ -52,7 +52,7 @@ class MainApi {
     // TODO подумать как прикрутить куки
     const jwt = localStorage.getItem('jwt');
 
-    return fetch(this.link + '/users/me', {
+    return fetch(this._link + '/users/me', {
       headers: {
         "Content-Type": "application/json",
         // "Cookie": cookie,
@@ -69,7 +69,7 @@ class MainApi {
     // TODO подумать как прикрутить куки
     const jwt = localStorage.getItem('jwt');
 
-    return fetch(this.link + '/users/me', {
+    return fetch(this._link + '/users/me', {
       headers: {
         "Content-Type": "application/json",
         // "Cookie": cookie,
@@ -88,6 +88,51 @@ class MainApi {
       })
   }
 
+  getMovies() {
+    // TODO подумать как прикрутить куки
+    const jwt = localStorage.getItem('jwt');
+
+    return fetch(this._link + '/movies', {
+      headers: {
+        "Content-Type": "application/json",
+        // "Cookie": cookie,
+        "Authorization": `Bearer ${jwt}`
+      },
+      method: "GET",
+    })
+      .then(response => {
+        return this._getResponseData(response);
+      })
+  }
+
+  addMovie(movie) {
+    const jwt = localStorage.getItem('jwt');
+
+    return fetch(this._link + '/movies', {
+      headers: {
+        "Content-Type": "application/json",
+        // "Cookie": cookie,
+        "Authorization": `Bearer ${jwt}`
+      },
+      method: "POST",
+      body: JSON.stringify({
+        country: movie.country,
+        director: movie.director,
+        duration: movie.duration,
+        year: movie.year,
+        description: movie.description,
+        image: `https://api.nomoreparties.co` + movie.image.url,
+        trailerLink: movie.trailerLink,
+        nameRU: movie.nameRU,
+        nameEN: movie.nameEN,
+        thumbnail: `https://api.nomoreparties.co` + movie.image.url,
+        movieId: movie.id,
+      })
+    })
+      .then(response => {
+        return this._getResponseData(response);
+      })
+  }
 }
 
 export const exampleMainApi = new MainApi({ link: 'http://localhost:3001' })

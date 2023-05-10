@@ -6,18 +6,26 @@ import { useEffect } from 'react';
 
 
 // ! форма поиска, куда пользователь будет вводить запрос
-function SearchForm({ handleSearchMovie, isChecked, handleCheck }) {
+function SearchForm({ handleSearchMovie, isChecked, handleCheck, saved, handleSearchSavedMovie }) {
   const { values, handleChange, errors, isValid, setValues } = useFormWithValidation();
 
   useEffect(()=>{
-    setValues({text: JSON.parse(localStorage.getItem('search-text'))})
+    if (!saved) {
+      setValues({text: JSON.parse(localStorage.getItem('search-text'))})
+    }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   },[])
 
   function onSubmit(event) {
     event.preventDefault();
-    if (isValid) {
-      handleSearchMovie(values)
+    if (!saved) {
+      if (isValid) {
+        handleSearchMovie(values)
+      }
+    } else {
+      if (isValid) {
+        handleSearchSavedMovie(values)
+      }
     }
   }
 

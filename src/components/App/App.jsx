@@ -143,9 +143,7 @@ function App() {
   }
 
   function handleButtonSave(movie, setIsSaveButtonActive) {
-
     if (!savedMovies.find(savedMovie => savedMovie.movieId === movie.id)) {
-
       exampleMainApi.addMovie(movie)
         .then((savedMovie) => {
           setSavedMovies([...savedMovies, savedMovie])
@@ -155,6 +153,13 @@ function App() {
           console.log(err); // выведем ошибку в консоль
         })
     }
+  }
+
+  function handleSearchSavedMovie(values) {
+    console.log(values)
+    const searchArray = savedMovies.filter(movie => movie.nameRU.toLowerCase().includes(values.text.toLowerCase()));
+    console.log(searchArray)
+    setSavedMovies(searchArray)
   }
 
   function handleButtonDelete(movie, saved) {
@@ -236,6 +241,7 @@ function App() {
                 onOpen={handleMenuPopupOpen}
                 movies={savedMovies}
                 handleButtonDelete={handleButtonDelete}
+                handleSearchSavedMovie={handleSearchSavedMovie}
               />
             }
           />

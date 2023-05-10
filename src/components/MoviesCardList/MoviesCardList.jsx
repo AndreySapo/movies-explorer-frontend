@@ -3,7 +3,7 @@ import MovieCard from '../MovieCard/MovieCard';
 import { useEffect, useState } from 'react';
 
 // !  компонент, который управляет отрисовкой карточек фильмов на страницу и их количеством
-function MoviesCardList({movies, saved, handleButtonSave}) {
+function MoviesCardList({movies, saved, handleButtonSave, handleButtonDelete}) {
   const [cardsToRender, setCardsToRender] = useState([]);
   const [maxCards, setMaxCards] = useState(0)
   const [numberOfRenderedCards, setNumberOfRenderedCards] = useState(12);
@@ -35,7 +35,7 @@ function MoviesCardList({movies, saved, handleButtonSave}) {
         cardsToRender.length !== 0 ?
           <ul className='MoviesCardList__container'>
             {cardsToRender.map((movie) => {
-              return <MovieCard key={movie.id||movie.movieId} movie={movie} saved={saved} handleButtonSave={handleButtonSave}/>
+              return <MovieCard key={movie.id||movie.movieId} movie={movie} saved={saved} handleButtonSave={handleButtonSave} handleButtonDelete={handleButtonDelete}/>
             })}
           </ul>
           :

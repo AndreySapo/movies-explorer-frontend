@@ -133,6 +133,22 @@ class MainApi {
         return this._getResponseData(response);
       })
   }
+
+  deleteMovie(id) {
+    const jwt = localStorage.getItem('jwt');
+
+    return fetch(this._link + '/movies/' + id, {
+      headers: {
+        "Content-Type": "application/json",
+        // "Cookie": cookie,
+        "Authorization": `Bearer ${jwt}`
+      },
+      method: "DELETE"
+    })
+      .then(response => {
+        return this._getResponseData(response);
+      })
+  }
 }
 
 export const exampleMainApi = new MainApi({ link: 'http://localhost:3001' })

@@ -5,7 +5,7 @@ import { useContext, useEffect, useState } from 'react';
 import { CurrentUserContext } from '../../utils/UserContext';
 
 // ! компонент одной карточки фильма
-function MovieCard({ movie, saved, handleButtonSave }) {
+function MovieCard({ movie, saved, handleButtonSave, handleButtonDelete }) {
 
   const { savedMovies } = useContext(CurrentUserContext);
 
@@ -14,13 +14,16 @@ function MovieCard({ movie, saved, handleButtonSave }) {
   const imageURL = !saved ? `https://api.nomoreparties.co` + image.url : image;
   const [isSaveButtonActive, setIsSaveButtonActive] = useState(false);
 
-  const onClick = () => handleButtonSave(movie, setIsSaveButtonActive);
+  const saveButtonClick = () => handleButtonSave(movie, setIsSaveButtonActive);
+  const deleteButtonClick = () => handleButtonDelete(movie, saved);
 
   useEffect(() => {
     if (savedMovies.find((savedMovie) => savedMovie.movieId === movie.id)) {
       setIsSaveButtonActive(true);
+    } else {
+      setIsSaveButtonActive(false);
     }
-  }, [])
+  }, [savedMovies])
 
 
   return (
@@ -34,17 +37,17 @@ function MovieCard({ movie, saved, handleButtonSave }) {
       </a>
       {
         saved ?
-          <button className='MovieCard__button button-hover'>
+          <button className='MovieCard__button button-hover' onClick={deleteButtonClick}>
             <img src={x} alt="" />
           </button> :
 
           isSaveButtonActive
             ?
-            <button className='MovieCard__button MovieCard__button_active' disabled>
+            <button className='MovieCard__button MovieCard__button_active button-hover' onClick={deleteButtonClick}>
               <img src={buttonSaved} alt="" />
             </button>
             :
-            <button className='MovieCard__button button-hover' onClick={onClick}>
+            <button className='MovieCard__button button-hover' onClick={saveButtonClick}>
               Сохранить
             </button>
       }

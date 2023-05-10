@@ -178,10 +178,32 @@ function App() {
     }
   }
 
+  function handleButtonDelete(movie, saved) {
+    // https://code.mu/ru/javascript/framework/react/book/prime/structures/removing-elements/
+    if (!saved) {
+      exampleMainApi.deleteMovie(savedMovies.find(savedMovie => savedMovie.movieId === movie.id)._id)
+        .then(() => {
+          const delIndex = savedMovies.findIndex(savedMovie => savedMovie.movieId === movie.id);
+          setSavedMovies([...savedMovies.slice(0, delIndex), ...savedMovies.slice(delIndex+1)])
+        })
+        .catch((err) => {
+          console.log(err); // выведем ошибку в консоль
+        })
+    } else {
+      exampleMainApi.deleteMovie(movie._id)
+        .then(() => {
+          const delIndex = savedMovies.indexOf(movie);
+          setSavedMovies([...savedMovies.slice(0, delIndex), ...savedMovies.slice(delIndex+1)])
+        })
+        .catch((err) => {
+          console.log(err); // выведем ошибку в консоль
+        })
+    }
+  }
 
   return (
     <div className="App">
-      <CurrentUserContext.Provider value={{currentUser, savedMovies}}>
+      <CurrentUserContext.Provider value={{ currentUser, savedMovies }}>
         <MenuPopup isOpen={isMenuPopupOpen} onClose={handleMenuPopupClose} />
         <Routes>
           {/* незащищенные маршруты */}
@@ -222,6 +244,7 @@ function App() {
                 shortsIsChecked={shortsIsChecked}
                 handleCheck={handleCheck}
                 handleButtonSave={handleButtonSave}
+                handleButtonDelete={handleButtonDelete}
               />
             }
           />
@@ -233,6 +256,7 @@ function App() {
                 isLoggedIn={isLoggedIn}
                 onOpen={handleMenuPopupOpen}
                 movies={savedMovies}
+                handleButtonDelete={handleButtonDelete}
               />
             }
           />

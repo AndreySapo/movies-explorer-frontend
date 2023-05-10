@@ -1,7 +1,7 @@
 import './SearchForm.css'
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 import lens from '../../images/lens.svg';
-import { useFormWithValidation } from '../../utils/Validation';
+import { useFormWithValidation } from '../../hooks/Validation';
 import { useEffect } from 'react';
 
 

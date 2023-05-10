@@ -2,7 +2,7 @@ import './MovieCard.css'
 import buttonSaved from '../../images/btn-saved.svg';
 import x from '../../images/x.svg';
 import { useContext, useEffect, useState } from 'react';
-import { CurrentUserContext } from '../../utils/UserContext';
+import { CurrentUserContext } from '../../context/UserContext';
 
 // ! компонент одной карточки фильма
 function MovieCard({ movie, saved, handleButtonSave, handleButtonDelete }) {

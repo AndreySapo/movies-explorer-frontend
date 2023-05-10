@@ -9,9 +9,9 @@ import Movies from '../Movies/Movies';
 import SavedMovies from '../SavedMovies/SavedMovies';
 import Profile from '../Profile/Profile';
 import Register from '../Register/Register';
-import { CurrentUserContext } from '../../utils/UserContext';
+import { CurrentUserContext } from '../../context/UserContext';
 import { exampleMainApi } from '../../utils/MainApi';
-import ProtectedRoute from '../ProtectedRoute';
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import { exampleMoviesApi } from '../../utils/MoviesApi';
 
 function App() {

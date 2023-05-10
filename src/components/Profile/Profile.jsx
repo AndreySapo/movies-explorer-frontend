@@ -1,8 +1,8 @@
 import Layout from '../Layout/Layout';
 import './Profile.css';
-import { CurrentUserContext } from '../../utils/UserContext';
+import { CurrentUserContext } from '../../context/UserContext';
 import React from 'react';
-import { useFormWithValidation } from '../../utils/Validation';
+import { useFormWithValidation } from '../../hooks/Validation';
 
 // ! компонент страницы изменения профиля
 function Profile({ isLoggedIn, onOpen, handleSignOut, handleEditProfile }) {

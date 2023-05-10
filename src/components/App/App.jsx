@@ -39,35 +39,14 @@ function App() {
     setIsMenuPopupOpen(false);
   }
 
-  // получаем юзера при логине
   React.useEffect(() => {
     if (isLoggedIn) {
-      exampleMainApi.getUserInfo()
-        .then((user) => {
-          setCurrentUser(user)
+      Promise.all([exampleMainApi.getUserInfo(), exampleMoviesApi.getMovies(), exampleMainApi.getMovies()])
+        .then(([getUserInfoResult, MoviesApiGetMoviesResult, MainApiGetMoviesResult]) => {
+          setCurrentUser(getUserInfoResult);
+          setAllMovies(MoviesApiGetMoviesResult);
+          setSavedMovies(MainApiGetMoviesResult.data)
         })
-        .catch((err) => {
-          console.log(err); // выведем ошибку в консоль
-        })
-    }
-  }, [isLoggedIn]);
-
-  // получаем все фильмы при логине
-  React.useEffect(() => {
-    if (isLoggedIn) {
-      exampleMoviesApi.getMovies()
-        .then((data) => setAllMovies(data))
-        .catch((err) => {
-          console.log(err); // выведем ошибку в консоль
-        })
-    }
-  }, [isLoggedIn]);
-
-  // получаем все сохраненные фильмы при логине
-  React.useEffect(() => {
-    if (isLoggedIn) {
-      exampleMainApi.getMovies()
-        .then((result) => setSavedMovies(result.data))
         .catch((err) => {
           console.log(err); // выведем ошибку в консоль
         })
@@ -184,7 +163,7 @@ function App() {
       exampleMainApi.deleteMovie(savedMovies.find(savedMovie => savedMovie.movieId === movie.id)._id)
         .then(() => {
           const delIndex = savedMovies.findIndex(savedMovie => savedMovie.movieId === movie.id);
-          setSavedMovies([...savedMovies.slice(0, delIndex), ...savedMovies.slice(delIndex+1)])
+          setSavedMovies([...savedMovies.slice(0, delIndex), ...savedMovies.slice(delIndex + 1)])
         })
         .catch((err) => {
           console.log(err); // выведем ошибку в консоль
@@ -193,7 +172,7 @@ function App() {
       exampleMainApi.deleteMovie(movie._id)
         .then(() => {
           const delIndex = savedMovies.indexOf(movie);
-          setSavedMovies([...savedMovies.slice(0, delIndex), ...savedMovies.slice(delIndex+1)])
+          setSavedMovies([...savedMovies.slice(0, delIndex), ...savedMovies.slice(delIndex + 1)])
         })
         .catch((err) => {
           console.log(err); // выведем ошибку в консоль

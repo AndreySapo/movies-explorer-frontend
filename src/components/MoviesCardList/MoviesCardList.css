@@ -16,6 +16,7 @@
   .MoviesCardList__container {
     grid-template-columns: repeat(auto-fit, 342px);
     gap: 35px 24px;    
+    justify-content: center;
   }
 }
 

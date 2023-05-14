@@ -243,6 +243,7 @@ function App() {
                 handleCheck={handleCheck}
                 handleButtonSave={handleButtonSave}
                 handleButtonDelete={handleButtonDelete}
+                loading={loading}
               />
             }
           />
@@ -256,6 +257,7 @@ function App() {
                 movies={savedMovies}
                 handleButtonDelete={handleButtonDelete}
                 handleSearchSavedMovie={handleSearchSavedMovie}
+                loading={loading}
               />
             }
           />

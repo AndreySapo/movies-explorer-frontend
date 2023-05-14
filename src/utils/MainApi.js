@@ -151,4 +151,5 @@ class MainApi {
   }
 }
 
-export const exampleMainApi = new MainApi({ link: 'http://api.movies.andreysapo.nomoredomains.monster' })
+// TODO поменять перед деплоем
+export const exampleMainApi = new MainApi({ link: 'http://localhost:3001' })

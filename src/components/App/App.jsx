@@ -16,6 +16,7 @@ import { exampleMoviesApi } from '../../utils/MoviesApi';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+  const [loading, setLoading] = React.useState(false);
   const [isMenuPopupOpen, setIsMenuPopupOpen] = React.useState(false);
 
   const [currentUser, setCurrentUser] = React.useState({});
@@ -41,6 +42,7 @@ function App() {
 
   React.useEffect(() => {
     if (isLoggedIn) {
+      setLoading(true);
       Promise.all([exampleMainApi.getUserInfo(), exampleMoviesApi.getMovies(), exampleMainApi.getMovies()])
         .then(([getUserInfoResult, MoviesApiGetMoviesResult, MainApiGetMoviesResult]) => {
           setCurrentUser(getUserInfoResult);
@@ -50,12 +52,14 @@ function App() {
         .catch((err) => {
           console.log(err); // выведем ошибку в консоль
         })
+        .finally(() => setLoading(false))
     }
   }, [isLoggedIn]);
 
   // получаем информацию при токене и меняем состояние страницы
   React.useEffect(() => {
     if (token) {
+      setLoading(true);
       exampleMainApi.getUserInfo()
         .then((result) => {
           if (result) {
@@ -66,6 +70,7 @@ function App() {
         .catch(() => {
           setIsLoggedIn(false);
         })
+        .finally(() => setLoading(false))
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [token])
@@ -204,6 +209,7 @@ function App() {
               <Register
                 handleSignUp={handleSignUp}
                 errorResponse={registerErrorResponse}
+                isLoggedIn={isLoggedIn}
               />
             }
           />
@@ -213,6 +219,7 @@ function App() {
               <Login
                 handleSignIn={handleSignIn}
                 errorResponse={loginErrorResponse}
+                isLoggedIn={isLoggedIn}
               />
             }
           />
@@ -261,6 +268,7 @@ function App() {
                 onOpen={handleMenuPopupOpen}
                 handleSignOut={handleSignOut}
                 handleEditProfile={handleEditProfile}
+                loading={loading}
               />
             }
           />

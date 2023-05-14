@@ -3,17 +3,21 @@ import './Profile.css';
 import { CurrentUserContext } from '../../context/UserContext';
 import React from 'react';
 import { useFormWithValidation } from '../../hooks/Validation';
+import successImg from '../../images/success.svg';
+import failImg from '../../images/fail.svg';
 
 // ! компонент страницы изменения профиля
 function Profile({ isLoggedIn, onOpen, handleSignOut, handleEditProfile }) {
-  const {currentUser} = React.useContext(CurrentUserContext);
+  const { currentUser } = React.useContext(CurrentUserContext);
   const { values,
     handleChange,
     errors,
     isValid,
     setValues } = useFormWithValidation();
   const [editState, setEditState] = React.useState(false);
-  const [fetchErrorText, setFetchErrorText] = React.useState('')
+  const [fetchErrorText, setFetchErrorText] = React.useState('');
+  const [popupState, setPopupState] = React.useState(false);
+  const [isPopupOpen, setIsPopupOpen] = React.useState(false);
   const header = true;
   const footer = false;
 
@@ -35,8 +39,12 @@ function Profile({ isLoggedIn, onOpen, handleSignOut, handleEditProfile }) {
   function onSubmit(event) {
     event.preventDefault();
     if (isValid) {
-      handleEditProfile(values, setFetchErrorText, setEditState)
+      handleEditProfile(values, setFetchErrorText, setEditState, setPopupState, setIsPopupOpen)
     }
+  }
+
+  function closePopup() {
+    setIsPopupOpen(false)
   }
 
   return (
@@ -104,6 +112,28 @@ function Profile({ isLoggedIn, onOpen, handleSignOut, handleEditProfile }) {
             :
             <button className='Profile__exit-button button-hover' onClick={handleSignOut}>Выйти из аккаунта</button>
         }
+        {/* <div className='Profile__popup Profile__popup_active'> */}
+        <div className={
+          isPopupOpen ?
+          'Profile__popup Profile__popup_active'
+          :
+          'Profile__popup'
+        }>
+          <div className="Profile__popup-container">
+            {popupState ?
+              <img src={successImg} alt="" className='Profile__popup-img' />
+              :
+              <img src={failImg} alt="" className='Profile__popup-img' />
+            }
+            {
+              popupState ?
+                <p className='Profile__popup-text'>Данные успешно обновлены</p>
+                :
+                <p className='Profile__popup-text'>Данные не были обновлены</p>
+            }
+            <button className='Profile__popup-btn-close' onClick={closePopup}/>
+          </div>
+        </div>
       </main>
     </Layout>
   );

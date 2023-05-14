@@ -107,7 +107,7 @@ function App() {
     setIsLoggedIn(false);
   }
 
-  function handleEditProfile(values, setFetchErrorText, setEditState) {
+  function handleEditProfile(values, setFetchErrorText, setEditState, setPopupState, setIsPopupOpen) {
     exampleMainApi.setUserInfo(values)
       .then((user) => {
         setCurrentUser({
@@ -117,15 +117,23 @@ function App() {
       })
       .then(() => {
         setEditState(false);
-        setFetchErrorText('')
+        setFetchErrorText('');
+        setIsPopupOpen(true);
+        setPopupState(true);
       })
       .catch((err) => {
         if (err === 409) {
           setFetchErrorText('Пользователь с таким email уже существует.')
+          setIsPopupOpen(true);
+          setPopupState(false);
         } else if (err === 500) {
           setFetchErrorText('При обновлении профиля произошла ошибка.')
+          setIsPopupOpen(true);
+          setPopupState(false);
         } else {
-          console.log(err)
+          console.log(err);
+          setIsPopupOpen(true);
+          setPopupState(false);
         }
       })
   }
@@ -156,7 +164,6 @@ function App() {
   }
 
   function handleSearchSavedMovie(values) {
-    console.log(values)
     const searchArray = savedMovies.filter(movie => movie.nameRU.toLowerCase().includes(values.text.toLowerCase()));
     console.log(searchArray)
     setSavedMovies(searchArray)

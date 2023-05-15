@@ -16,6 +16,7 @@ import { exampleMoviesApi } from '../../utils/MoviesApi';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+  const [loading, setLoading] = React.useState(false);
   const [isMenuPopupOpen, setIsMenuPopupOpen] = React.useState(false);
 
   const [currentUser, setCurrentUser] = React.useState({});
@@ -25,6 +26,7 @@ function App() {
 
   const [allMovies, setAllMovies] = React.useState([]);
   const [savedMovies, setSavedMovies] = React.useState([]);
+  const [findedSavedMovies, setFindedSavedMovies] = React.useState([]);
   const [moviesFromSearch, setMoviesFromSearch] = React.useState([]);
 
   const [shortsIsChecked, setShortsIsChecked] = React.useState(false);
@@ -41,6 +43,7 @@ function App() {
 
   React.useEffect(() => {
     if (isLoggedIn) {
+      setLoading(true);
       Promise.all([exampleMainApi.getUserInfo(), exampleMoviesApi.getMovies(), exampleMainApi.getMovies()])
         .then(([getUserInfoResult, MoviesApiGetMoviesResult, MainApiGetMoviesResult]) => {
           setCurrentUser(getUserInfoResult);
@@ -50,12 +53,14 @@ function App() {
         .catch((err) => {
           console.log(err); // выведем ошибку в консоль
         })
+        .finally(() => setLoading(false))
     }
   }, [isLoggedIn]);
 
   // получаем информацию при токене и меняем состояние страницы
   React.useEffect(() => {
     if (token) {
+      setLoading(true);
       exampleMainApi.getUserInfo()
         .then((result) => {
           if (result) {
@@ -66,6 +71,7 @@ function App() {
         .catch(() => {
           setIsLoggedIn(false);
         })
+        .finally(() => setLoading(false))
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [token])
@@ -107,7 +113,7 @@ function App() {
     setIsLoggedIn(false);
   }
 
-  function handleEditProfile(values, setFetchErrorText, setEditState) {
+  function handleEditProfile(values, setFetchErrorText, setEditState, setPopupState, setIsPopupOpen) {
     exampleMainApi.setUserInfo(values)
       .then((user) => {
         setCurrentUser({
@@ -117,15 +123,23 @@ function App() {
       })
       .then(() => {
         setEditState(false);
-        setFetchErrorText('')
+        setFetchErrorText('');
+        setIsPopupOpen(true);
+        setPopupState(true);
       })
       .catch((err) => {
         if (err === 409) {
           setFetchErrorText('Пользователь с таким email уже существует.')
+          setIsPopupOpen(true);
+          setPopupState(false);
         } else if (err === 500) {
           setFetchErrorText('При обновлении профиля произошла ошибка.')
+          setIsPopupOpen(true);
+          setPopupState(false);
         } else {
-          console.log(err)
+          console.log(err);
+          setIsPopupOpen(true);
+          setPopupState(false);
         }
       })
   }
@@ -156,10 +170,7 @@ function App() {
   }
 
   function handleSearchSavedMovie(values) {
-    console.log(values)
-    const searchArray = savedMovies.filter(movie => movie.nameRU.toLowerCase().includes(values.text.toLowerCase()));
-    console.log(searchArray)
-    setSavedMovies(searchArray)
+    setFindedSavedMovies(savedMovies.filter(savedMovie => savedMovie.nameRU.toLowerCase().includes(values.text.toLowerCase())))
   }
 
   function handleButtonDelete(movie, saved) {
@@ -197,6 +208,7 @@ function App() {
               <Register
                 handleSignUp={handleSignUp}
                 errorResponse={registerErrorResponse}
+                isLoggedIn={isLoggedIn}
               />
             }
           />
@@ -206,6 +218,7 @@ function App() {
               <Login
                 handleSignIn={handleSignIn}
                 errorResponse={loginErrorResponse}
+                isLoggedIn={isLoggedIn}
               />
             }
           />
@@ -229,6 +242,7 @@ function App() {
                 handleCheck={handleCheck}
                 handleButtonSave={handleButtonSave}
                 handleButtonDelete={handleButtonDelete}
+                loading={loading}
               />
             }
           />
@@ -242,6 +256,8 @@ function App() {
                 movies={savedMovies}
                 handleButtonDelete={handleButtonDelete}
                 handleSearchSavedMovie={handleSearchSavedMovie}
+                loading={loading}
+                findedSavedMovies={findedSavedMovies}
               />
             }
           />
@@ -254,6 +270,7 @@ function App() {
                 onOpen={handleMenuPopupOpen}
                 handleSignOut={handleSignOut}
                 handleEditProfile={handleEditProfile}
+                loading={loading}
               />
             }
           />

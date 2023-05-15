@@ -1,9 +1,12 @@
 import './MoviesCardList.css';
 import MovieCard from '../MovieCard/MovieCard';
 import { useEffect, useState } from 'react';
+import { exampleMoviesApi } from '../../utils/MoviesApi';
+import Preloader from '../Preloader/Preloader';
 
 // !  компонент, который управляет отрисовкой карточек фильмов на страницу и их количеством
-function MoviesCardList({ movies, saved, handleButtonSave, handleButtonDelete }) {
+function MoviesCardList({ movies, saved, handleButtonSave, handleButtonDelete, findedSavedMovies }) {
+  const [loading, setLoading] = useState(false);
   const [cardsToRender, setCardsToRender] = useState([]);
   const [maxCards, setMaxCards] = useState(0)
   const [numberOfRenderedCards, setNumberOfRenderedCards] = useState(0);
@@ -38,6 +41,22 @@ function MoviesCardList({ movies, saved, handleButtonSave, handleButtonDelete })
 
   useEffect(() => {
     if (!saved) {
+      if (localStorageMovies) {
+        setCardsToRender(localStorageMovies.slice(0, numberOfRenderedCards))
+        setMaxCards(localStorageMovies.length)
+      } else {
+        setLoading(true)
+        exampleMoviesApi.getMovies()
+          .then((allmovies) => setCardsToRender(allmovies))
+          .catch((err) => console.log(err))
+          .finally(() => setLoading(false))
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  useEffect(() => {
+    if (!saved) {
       if (movies.length !== 0) {
         setCardsToRender(movies.slice(0, numberOfRenderedCards));
         setMaxCards(movies.length)
@@ -48,32 +67,43 @@ function MoviesCardList({ movies, saved, handleButtonSave, handleButtonDelete })
         setCardsToRender([])
       }
     } else {
-      setCardsToRender(movies);
+      setCardsToRender(movies)
+
+      if (findedSavedMovies.length > 0) {
+        setCardsToRender(findedSavedMovies)
+      }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [movies, numberOfRenderedCards])
+  }, [movies, numberOfRenderedCards, findedSavedMovies])
 
   const handleButtonMore = () => setNumberOfRenderedCards(numberOfRenderedCards + increaseMaxCards);
 
   return (
-    <section className="MoviesCardList">
+    <>
       {
-        cardsToRender.length !== 0 ?
-          <ul className='MoviesCardList__container'>
-            {cardsToRender.map((movie) => {
-              return <MovieCard key={movie.id || movie.movieId} movie={movie} saved={saved} handleButtonSave={handleButtonSave} handleButtonDelete={handleButtonDelete} />
-            })}
-          </ul>
+        loading ?
+          <Preloader />
           :
-          <p className='MoviesCardList__text'>Ничего не найдено</p>
+          <section className="MoviesCardList">
+            {
+              cardsToRender.length !== 0 ?
+                <ul className='MoviesCardList__container'>
+                  {cardsToRender.map((movie) => {
+                    return <MovieCard key={movie.id || movie.movieId} movie={movie} saved={saved} handleButtonSave={handleButtonSave} handleButtonDelete={handleButtonDelete} />
+                  })}
+                </ul>
+                :
+                <p className='MoviesCardList__text'>Ничего не найдено</p>
+            }
+            {
+              numberOfRenderedCards < maxCards ?
+                <button className='MoviesCardList__button button-hover' onClick={handleButtonMore}>Ещё</button>
+                :
+                <></>
+            }
+          </section>
       }
-      {
-        numberOfRenderedCards < maxCards ?
-          <button className='MoviesCardList__button button-hover' onClick={handleButtonMore}>Ещё</button>
-          :
-          <></>
-      }
-    </section>
+    </>
   );
 }
 

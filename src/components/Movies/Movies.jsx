@@ -5,9 +5,8 @@ import Layout from '../Layout/Layout';
 import Preloader from '../Preloader/Preloader';
 
 // ! компонент страницы с поиском по фильмам
-function Movies({ isLoggedIn, onOpen, handleSearchMovie, movies, shortsIsChecked, handleCheck, handleButtonSave, handleButtonDelete }) {
+function Movies({ isLoggedIn, onOpen, handleSearchMovie, movies, shortsIsChecked, handleCheck, handleButtonSave, handleButtonDelete, loading }) {
 
-  const loading = false;
   const header = true;
   const footer = true;
 

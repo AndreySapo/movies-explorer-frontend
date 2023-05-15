@@ -5,7 +5,7 @@ import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import Preloader from '../Preloader/Preloader';
 
 // ! компонент страницы с поиском по фильмам
-function SavedMovies({ isLoggedIn, onOpen, movies, handleButtonDelete, handleSearchSavedMovie, loading }) {
+function SavedMovies({ isLoggedIn, onOpen, movies, handleButtonDelete, handleSearchSavedMovie, loading, findedSavedMovies }) {
 
   const saved = true;
   const header = true;
@@ -15,7 +15,7 @@ function SavedMovies({ isLoggedIn, onOpen, movies, handleButtonDelete, handleSea
     <Layout isLoggedIn={isLoggedIn} onOpen={onOpen} header={header} footer={footer}>
       <main className='SavedMovies'>
         <SearchForm saved={saved} handleSearchSavedMovie={handleSearchSavedMovie}/>
-        {loading ? <Preloader/> : <MoviesCardList movies={movies} saved={saved} handleButtonDelete={handleButtonDelete}/>}
+        {loading ? <Preloader/> : <MoviesCardList movies={movies} saved={saved} handleButtonDelete={handleButtonDelete} findedSavedMovies={findedSavedMovies}/>}
       </main>
     </Layout>
   );

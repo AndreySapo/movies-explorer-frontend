@@ -5,7 +5,7 @@ import { exampleMoviesApi } from '../../utils/MoviesApi';
 import Preloader from '../Preloader/Preloader';
 
 // !  компонент, который управляет отрисовкой карточек фильмов на страницу и их количеством
-function MoviesCardList({ movies, saved, handleButtonSave, handleButtonDelete }) {
+function MoviesCardList({ movies, saved, handleButtonSave, handleButtonDelete, findedSavedMovies }) {
   const [loading, setLoading] = useState(false);
   const [cardsToRender, setCardsToRender] = useState([]);
   const [maxCards, setMaxCards] = useState(0)
@@ -67,10 +67,14 @@ function MoviesCardList({ movies, saved, handleButtonSave, handleButtonDelete })
         setCardsToRender([])
       }
     } else {
-      setCardsToRender(movies);
+      setCardsToRender(movies)
+
+      if (findedSavedMovies.length > 0) {
+        setCardsToRender(findedSavedMovies)
+      }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [movies, numberOfRenderedCards])
+  }, [movies, numberOfRenderedCards, findedSavedMovies])
 
   const handleButtonMore = () => setNumberOfRenderedCards(numberOfRenderedCards + increaseMaxCards);
 

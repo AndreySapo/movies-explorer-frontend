@@ -26,6 +26,7 @@ function App() {
 
   const [allMovies, setAllMovies] = React.useState([]);
   const [savedMovies, setSavedMovies] = React.useState([]);
+  const [findedSavedMovies, setFindedSavedMovies] = React.useState([]);
   const [moviesFromSearch, setMoviesFromSearch] = React.useState([]);
 
   const [shortsIsChecked, setShortsIsChecked] = React.useState(false);
@@ -169,9 +170,7 @@ function App() {
   }
 
   function handleSearchSavedMovie(values) {
-    const searchArray = savedMovies.filter(movie => movie.nameRU.toLowerCase().includes(values.text.toLowerCase()));
-    console.log(searchArray)
-    setSavedMovies(searchArray)
+    setFindedSavedMovies(savedMovies.filter(savedMovie => savedMovie.nameRU.toLowerCase().includes(values.text.toLowerCase())))
   }
 
   function handleButtonDelete(movie, saved) {
@@ -258,6 +257,7 @@ function App() {
                 handleButtonDelete={handleButtonDelete}
                 handleSearchSavedMovie={handleSearchSavedMovie}
                 loading={loading}
+                findedSavedMovies={findedSavedMovies}
               />
             }
           />

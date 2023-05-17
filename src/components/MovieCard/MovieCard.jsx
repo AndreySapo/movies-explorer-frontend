@@ -1,20 +1,30 @@
-import { useState } from 'react';
 import './MovieCard.css'
 import buttonSaved from '../../images/btn-saved.svg';
 import x from '../../images/x.svg';
+import { useContext, useEffect, useState } from 'react';
+import { CurrentUserContext } from '../../context/UserContext';
 
 // ! компонент одной карточки фильма
-function MovieCard({ movie, saved }) {
+function MovieCard({ movie, saved, handleButtonSave, handleButtonDelete }) {
 
-  const { nameRU, duration, image, trailerLink } = movie; // TODO добавить изображение
+  const { savedMovies } = useContext(CurrentUserContext);
 
-  const imageURL = `https://api.nomoreparties.co` + image.url;
+  const { nameRU, duration, image, trailerLink } = movie;
 
-  const [isLiked, setIsLiked] = useState(false);
+  const imageURL = !saved ? `https://api.nomoreparties.co` + image.url : image;
+  const [isSaveButtonActive, setIsSaveButtonActive] = useState(false);
 
-  function handleSetIsLiked() {
-    setIsLiked(!isLiked);
-  }
+  const saveButtonClick = () => handleButtonSave(movie, setIsSaveButtonActive);
+  const deleteButtonClick = () => handleButtonDelete(movie, saved);
+
+  useEffect(() => {
+    if (savedMovies.find((savedMovie) => savedMovie.movieId === movie.id)) {
+      setIsSaveButtonActive(true);
+    } else {
+      setIsSaveButtonActive(false);
+    }
+  }, [savedMovies])
+
 
   return (
     <li className="MovieCard">
@@ -27,17 +37,17 @@ function MovieCard({ movie, saved }) {
       </a>
       {
         saved ?
-          <button className='MovieCard__button button-hover' onClick={handleSetIsLiked}>
+          <button className='MovieCard__button button-hover' onClick={deleteButtonClick}>
             <img src={x} alt="" />
           </button> :
 
-          isLiked
+          isSaveButtonActive
             ?
-            <button className='MovieCard__button MovieCard__button_active button-hover' onClick={handleSetIsLiked}>
+            <button className='MovieCard__button MovieCard__button_active button-hover' onClick={deleteButtonClick}>
               <img src={buttonSaved} alt="" />
             </button>
             :
-            <button className='MovieCard__button button-hover' onClick={handleSetIsLiked}>
+            <button className='MovieCard__button button-hover' onClick={saveButtonClick}>
               Сохранить
             </button>
       }

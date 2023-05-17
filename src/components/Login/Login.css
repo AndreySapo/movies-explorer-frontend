@@ -2,6 +2,7 @@
   max-width: 396px;
   width: 100%;
   margin: 70px auto 0;
+  position: relative;
 }
 
 @media screen and (max-width: 1280px) {
@@ -140,6 +141,22 @@
     max-width: 260px;
     margin-top: 267px;
   }
+}
+
+.Login__button_disabled {
+  background: #F8F8F8;
+  color: #C2C2C2;
+}
+
+.Login__fetch-error {
+  font-weight: 400;
+  font-size: 11px;
+  line-height: calc((13/11)*100%);
+  text-align: center;
+  color: #FF004C;
+  position: absolute;
+  bottom: 85px;
+  left: 76px;
 }
 
 .Login__redirect-link {
